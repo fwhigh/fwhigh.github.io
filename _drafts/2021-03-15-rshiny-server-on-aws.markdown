@@ -9,7 +9,7 @@ tags:
   - r
   - docker
   - elasticbeanstalk
-excerpt: How to stand up an R Shiny servery using AWS.
+excerpt: How I tricked AWS into serving R Shiny.
 ---
 
 {% include toc %}
