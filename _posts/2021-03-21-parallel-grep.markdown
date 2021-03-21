@@ -158,12 +158,7 @@ Here's a quick way to generate a feature include-list.
 ```bash
 # features that appear more than min_occurrences times
 awk -v min_occurrences=10 '
-$2 > min_occurrences {n[$1]} 
-END {
-  for (i in n) {
-    print i 
-  } 
-}
+$2 > min_occurrences {print $1} 
 ' kddb_feature_count.txt > kddb_feature_include_list.txt
 ```
 
