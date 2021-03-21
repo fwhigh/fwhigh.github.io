@@ -5,6 +5,7 @@ comments: true
 categories: 
   - statistics
   - big data
+  - streaming algorithms
 tags:
   - resampling
   - Monte Carlo
