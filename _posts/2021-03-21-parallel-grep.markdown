@@ -164,5 +164,5 @@ $2 > min_occurrences {print $1}
 
 That's 3,814,194 eligible features in the training set, 
 13% of the original dimensionality. 
-This would bring nice speed-ups to model training and prediction, at no
+This would bring nice speedups to model training and prediction, at no
 cost to accuracy.
