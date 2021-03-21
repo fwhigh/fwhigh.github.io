@@ -1,5 +1,5 @@
 ---
-title: "Parallel Grep"
+title: "Parallel Grep and Awk"
 date: 2021-03-21 12:00:00 -0700
 comments: true
 author: "Will High"
@@ -18,14 +18,15 @@ excerpt: I get a nearly 6x speedup over standard grep by using GNU parallel.
 
 I get a 6x speedup on a vanilla grep task by using 
 [GNU parallel](https://www.gnu.org/software/parallel/)
-(`brew install parallel`).
+(`brew install parallel`). 
+I get 4x speedup on an awk task computing feature cardinality for a machine learning problem.
 
 # Overview
 
-This post is about speeding up grep on a single machine. 
+This post is about speeding up grep and awk on a single machine. 
 It's a modified repost of a Wordpress article I wrote a few years ago. 
 I thought it was cool enough to bring over to my new blog home, 
-and in doing so I'm seeing the 3x gain I originally got go up to 6x. 
+and in doing so I'm seeing the 3x gain I originally got on the grep task go up to 6x. 
 Awesome. 
 
 # Parallel grep
@@ -53,7 +54,7 @@ time \
   > /dev/null
 ```
 
-# Parallel feature cardinality
+# Parallel feature cardinality with awk
 
 Now I'll use this to do something useful: count the occurrence of each of the 
 $O(10^7)$ features in the training file. 
