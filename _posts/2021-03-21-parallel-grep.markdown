@@ -8,7 +8,9 @@ categories:
   - streaming algorithms
 tags:
   - bash
+  - grep
   - awk
+  - gnu parallel
 excerpt: I get a nearly 6x speedup over standard grep by using GNU parallel.
 ---
 
