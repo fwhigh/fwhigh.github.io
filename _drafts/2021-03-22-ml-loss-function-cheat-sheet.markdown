@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning Loss Math Cheat Sheet"
+title: "Not Another Machine Learning Loss Function Cheat Sheet"
 date: 2021-03-21 12:00:00 -0700
 comments: true
 author: "Will High"
@@ -17,7 +17,7 @@ excerpt: Derive losses from likelihood plus optional regularization priors.
 Cheat sheet for deriving loss functions from a data generating model likelihood
 and optional priors. This post is different from other cheat sheets because it
 includes more model types than I have typically seen in one place,
-including survival and quantile models. 
+including survival and quantile models, and it includes second derivatives. 
 
 # Bayes theorem
 
@@ -41,30 +41,25 @@ $y_i | \mathbf{x}_i$ label-feature vector tuples.
 
 We're looking for the best model, which maximizes the posterior probability. 
 
-\begin{equation}
-f_{\textrm{best}} = \textrm{argmax}_f p(h) p({y | \mathbf{x}} | h)
-\end{equation}
-
-# Gradient descent and gradient boosting
+# Gradient descent
 
 An objective function is derived from a likelihood function, and more generally from a posterior probability
-function, by taking the log, which turns products into sums. 
-Probability maximization is turned into function minimization by multiple by -1 and ignoring any other additive and
-multiplicative constants. 
-You end up with functions that can be written in the form of a risk function
+function, by taking the negative log, which turns products into sums
+and maximization into minimization. 
+The log-likelihood portion can be written 
+as the mean of a loss function $\ell$,
 
 $$
-L = \frac{1}{N}\sum_i^{N} \ell_i
+L = \frac{1}{N}\sum_i^{N} \ell_i.
 $$
 
-i.e., the mean of a loss function $\ell(\mathbf{x}_i)$. 
 
 ## In linear regression, gradient descent happens in coefficient space
 
 For linear models like least-squares and logistic regression, 
 
 $$
-\ell = \ell(f(\beta; \mathbf{x}_i))
+\ell_i = \ell(f(\beta; \mathbf{x}_i))
 $$
 
 where 
@@ -73,19 +68,24 @@ $$
 f(\beta; \mathbf{x}_i) = \mathbf{x}_i^T \mathbf{\beta},
 $$
 
-This forumaltion supports an offset or y-intercept term by defining $x_0 = 1$. 
-The linear function $f$ is mapped to parameters of the likelihood model via a link funtion. 
-For example, the link for ordinary least squares is the trivial identity function, and 
-for logistic regression it's the probit, which is the inverse of the sigmoid. 
+$\beta$ are the coefficients.
+This formulation supports a y-intercept or offset term by defining $x_0 = 1$. 
+The rest of the entries $x_i, i>0$ are the model features.
 
-Gradient descent minimazation methods make use of the first partial derivative or "subgradient".
+Gradient descent minimazation methods make use of the first partial derivative,
+sometimes called:
+* subgradient
+* score
+* informant
 
 $$\begin{eqnarray}
 \ell^{\prime} & = & \frac{\partial \ell}{\partial \mathbf{\beta}} \\
  & = & \mathbf{x}_i \frac{\partial \ell}{\partial f} 
 \end{eqnarray}$$
 
-Sometimes gradient descent the second partial derivative or *Hessian*.
+Some gradient descent variants,
+like Newton-Raphson,
+use the second partial derivative or *Hessian*.
 
 $$\begin{eqnarray}
 \ell^{\prime\prime} & = & \frac{\partial^2 \ell}{\partial \mathbf{\beta}^2} \\
@@ -97,13 +97,12 @@ $$\begin{eqnarray}
 In gradient boosting, 
 
 $$
-\ell = \ell(f)
+\ell_i = \ell(f_i)
 $$
 
-where 
-
-optimization is done over the set of different functions $f$ in functional space
-rather than over parameters of a single linear function. In this case the gradient is just
+where optimization is done over the set of different functions $f_i$ in functional space
+rather than over parameters of a single linear function. 
+In this case the gradient is 
 
 $$\begin{eqnarray}
 \ell^{\prime} & = & \frac{\partial \ell}{\partial f}
@@ -118,9 +117,10 @@ $$\begin{eqnarray}
 All derivatives below will be computed with respect to $f$.
 If you are using them in a gradient boosting context, this is all you need.
 If you are using them in a linear model context, 
-you need to multiply the gradient and Hessian by $\mathbf{x}_i$ and $\mathbf{x}_i$, respectively.
+you need to multiply the gradient and Hessian by 
+$\mathbf{x}_i$ and $\mathbf{x}_i^2$, respectively.
 
-# Likelihood, loss, gradient, hessian
+# Likelihood, loss, gradient, Hessian
 
 The loss is the negative log-likelihood for a single data point.
 
@@ -128,38 +128,37 @@ The loss is the negative log-likelihood for a single data point.
 
 Used in continous variable regression problems. 
 
-Likelihood function, called Gaussian or normal:
+**Likelihood function** --
+Start with the Gaussian a.k.a. normal distribution.
 
 $$\begin{equation}
 \prod_{i=1}^N\frac{1}{\sigma\sqrt{2\pi}}\exp{-\frac{(y_i - f(\mathbf{x}_i))^2}{2\sigma^2}}
 \end{equation}$$
 
-Loss function:
+**Likelihood function** --
 
 $$\begin{equation}
 \ell = (y_i - f(\mathbf{x}_i))^2
 \end{equation}$$
 
-Gradient:
+**Gradient** --
 
 $$\begin{equation}
 \frac{\partial \ell}{\partial f} = 2(f(\mathbf{x}_i) - y_i)
 \end{equation}$$
 
-Hessian:
+**Hessian** --
 
 $$\begin{equation}
 \frac{\partial^2 \ell}{\partial f^2} = 2
 \end{equation}$$
 
-
 ## Log loss
 
 Used in binary classifiction problems. 
 
-Likelihood function:
-
-Bernoulli
+**Likelihood function** --
+The Bernoulli distribution.
 
 \begin{equation}
 \prod_{i=1}^N p(\mathbf{x}_i)^{y_i} (1 - p(\mathbf{x}_i))^{1 - {y_i}}
@@ -181,8 +180,7 @@ p(\mathbf{x}_i) = \frac{1}{1 + \exp{(-f(\mathbf{x}_i))}}
 \end{equation}
 
 
-Loss function
-
+**Loss function** --
 For labels following the binary indicator convention $y \in \\{0, 1\\}$, 
 all of the following are equivalent. The easiest way to prove
 they are equivalent is to plug in $y = 0$ and $y = 1$ and rearrange.
@@ -198,16 +196,16 @@ The first form is useful if you want to use different link functions.
 For labels following the transformed convention $z = 2y-1 \in \\{-1, 1\\}$:
 
 $$\begin{equation}
-\ell = \log{(1 + exp{(-g f(\mathbf{x}_i))})}
+\ell = \log{(1 + exp{(-z f(\mathbf{x}_i))})}
 \end{equation}$$
 
-Gradient
+**Gradient** --
 
 $$\begin{eqnarray}
 \frac{\partial \ell}{\partial f} & = & p(\mathbf{x}_i) - y_i 
 \end{eqnarray}$$
 
-Hessian
+**Hessian** --
 
 $$\begin{eqnarray}
 \frac{\partial^2 \ell}{\partial f^2} & = & p(\mathbf{x}_i)(1 - p(\mathbf{x}_i)) 
@@ -215,15 +213,72 @@ $$\begin{eqnarray}
 
 
 
-## Cox proportional hazards survival
+## Cox proportional hazards
 
-Likelihood function: Cox partial likelihood
+**Likelihood function** --
+Start from the Cox proportional hazards partial likelihood function.
+The partial likelihood is, as you might guess,
+just part of a larger likelihood, but it is sufficient for maximum likelihood
+estimation and therefore regression.
 
-Loss function 
+$$\begin{eqnarray}
+L(f) = \prod_{i:C_i = 1} \frac{\exp{f_i}}{\sum_{j:t_j \geq t_i} \exp{f_j}}
+\end{eqnarray}$$
 
-Gradient
+Using the analogy of subscribers to a business 
+who may or may not renew from period to period,
+following is the unique terminology of survival analysis.
+* $i$ and $j$ index users.
+* $C_i = 1$ is a cancelation or churn event for user $i$ at time $t_i$
+* $C_i = 0$ is a renewal or survival event for user $i$ at time $t_i$
+* Subscribers $i:C_i = 1$ are users who canceled at time $t_i$.
+* $j:t_j \geq t_i$ are users who have survived up to and including time $t_i$, 
+which is the instant before subscriber $i$ canceled their subscription 
+and churned out of the business. This is called the *risk set*, because
+they are the users at risk of canceling at the time user $i$ canceled. 
+The risk set includes user $i$.
 
-Hessian
+In clinical studies, users are subjects 
+and churn is non-survival, i.e. death.
+
+**Loss function**
+
+$$\begin{eqnarray}
+\ell_i = f_i - \log{\sum_{j:t_j \geq t_i} \exp{f_j}}
+\end{eqnarray}$$
+
+computed only for each churned user $i:C_i = 1$ 
+at their time of churn $t_i$.
+
+**Gradient**
+
+I struggled to represent this universally for linear regression
+and for gradient boosting, so I'll show them separately. 
+For linear regression,
+
+$$\begin{eqnarray}
+\frac{\partial \ell_i}{\partial \beta} = X_i - \frac{\sum_{j:t_j \geq t_i} X_j \exp{f_j}}{\sum_{j:t_j \geq t_i} \exp{f_j}}
+\end{eqnarray}$$
+
+For gradient boosting,
+
+$$\begin{eqnarray}
+\frac{\partial \ell_i}{\partial f} = 1 - \frac{\sum_{j:t_j \geq t_i} \exp{f_j}}{\sum_{j:t_j \geq t_i} \exp{f_j}}
+\end{eqnarray}$$
+
+**Hessian**
+
+For linear regression,
+
+$$\begin{eqnarray}
+\frac{\partial^2 \ell_i}{\partial \beta^2} = 1 - \frac{\sum_{j:t_j \geq t_i} \exp{f_j}}{\sum_{j:t_j \geq t_i} \exp{f_j}}
+\end{eqnarray}$$
+
+For gradient boosting,
+
+$$\begin{eqnarray}
+\frac{\partial^2 \ell_i}{\partial f^2} = - \frac{1}{1} + \frac{1}{1}
+\end{eqnarray}$$
 
 ## Weibull survival
 
