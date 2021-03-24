@@ -42,12 +42,83 @@ $y_i | \mathbf{x}_i$ label-feature vector tuples.
 We're looking for the best model, which maximizes the posterior probability. 
 
 \begin{equation}
-h_{\textrm{best}} = \textrm{argmax}_h p(h) p({y | \mathbf{x}} | h)
+f_{\textrm{best}} = \textrm{argmax}_f p(h) p({y | \mathbf{x}} | h)
 \end{equation}
 
-# Stochastic gradient descent and gradient boosting
+# Gradient descent and gradient boosting
 
-TBW
+An objective function is derived from a likelihood function, and more generally from a posterior probability
+function, by taking the log, which turns products into sums. 
+Probability maximization is turned into function minimization by multiple by -1 and ignoring any other additive and
+multiplicative constants. 
+You end up with functions that can be written in the form of a risk function
+
+$$
+L = \frac{1}{N}\sum_i^{N} \ell_i
+$$
+
+i.e., the mean of a loss function $\ell(\mathbf{x}_i)$. 
+
+## In linear regression, gradient descent happens in coefficient space
+
+For linear models like least-squares and logistic regression, 
+
+$$
+\ell = \ell(f(\beta; \mathbf{x}_i))
+$$
+
+where 
+
+$$
+f(\beta; \mathbf{x}_i) = \mathbf{x}_i^T \mathbf{\beta},
+$$
+
+This forumaltion supports an offset or y-intercept term by defining $x_0 = 1$. 
+The linear function $f$ is mapped to parameters of the likelihood model via a link funtion. 
+For example, the link for ordinary least squares is the trivial identity function, and 
+for logistic regression it's the probit, which is the inverse of the sigmoid. 
+
+Gradient descent minimazation methods make use of the first partial derivative or "subgradient".
+
+$$\begin{eqnarray}
+\ell^{\prime} & = & \frac{\partial \ell}{\partial \mathbf{\beta}} \\
+ & = & \mathbf{x}_i \frac{\partial \ell}{\partial f} 
+\end{eqnarray}$$
+
+Sometimes gradient descent the second partial derivative or *Hessian*.
+
+$$\begin{eqnarray}
+\ell^{\prime\prime} & = & \frac{\partial^2 \ell}{\partial \mathbf{\beta}^2} \\
+ & = & \mathbf{x}_i^2 \frac{\partial^2 \ell}{\partial f^2} 
+\end{eqnarray}$$
+
+## In gradient boosting, gradient descent happens in function space
+
+In gradient boosting, 
+
+$$
+\ell = \ell(f)
+$$
+
+where 
+
+optimization is done over the set of different functions $f$ in functional space
+rather than over parameters of a single linear function. In this case the gradient is just
+
+$$\begin{eqnarray}
+\ell^{\prime} & = & \frac{\partial \ell}{\partial f}
+\end{eqnarray}$$
+
+and the Hessian is
+
+$$\begin{eqnarray}
+\ell^{\prime\prime} & = & \frac{\partial^2 \ell}{\partial f^2}.
+\end{eqnarray}$$
+
+All derivatives below will be computed with respect to $f$.
+If you are using them in a gradient boosting context, this is all you need.
+If you are using them in a linear model context, 
+you need to multiply the gradient and Hessian by $\mathbf{x}_i$ and $\mathbf{x}_i$, respectively.
 
 # Likelihood, loss, gradient, hessian
 
@@ -59,21 +130,27 @@ Used in continous variable regression problems.
 
 Likelihood function, called Gaussian or normal:
 
-\begin{equation}
-\prod_{i=1}^N\frac{1}{\sigma\sqrt{2\pi}}\exp{-\frac{(y_i - h(\mathbf{x}_i))^2}{2\sigma^2}}
-\end{equation}
+$$\begin{equation}
+\prod_{i=1}^N\frac{1}{\sigma\sqrt{2\pi}}\exp{-\frac{(y_i - f(\mathbf{x}_i))^2}{2\sigma^2}}
+\end{equation}$$
 
 Loss function:
 
-\begin{equation}
-(y_i - h(\mathbf{x}_i))^2
-\end{equation}
+$$\begin{equation}
+\ell = (y_i - f(\mathbf{x}_i))^2
+\end{equation}$$
 
 Gradient:
 
-\begin{equation}
-(y_i - h(\mathbf{x}_i))^2
-\end{equation}
+$$\begin{equation}
+\frac{\partial \ell}{\partial f} = 2(f(\mathbf{x}_i) - y_i)
+\end{equation}$$
+
+Hessian:
+
+$$\begin{equation}
+\frac{\partial^2 \ell}{\partial f^2} = 2
+\end{equation}$$
 
 
 ## Log loss
@@ -88,42 +165,61 @@ Bernoulli
 \prod_{i=1}^N p(\mathbf{x}_i)^{y_i} (1 - p(\mathbf{x}_i))^{1 - {y_i}}
 \end{equation}
 
-The hypothesis in this case is the log-odds, which is a function 
-with support $h \in \\{-\infty, \infty\\}$.
+The model in this case is a function 
+with support $h \in \\{-\infty, \infty\\}$ that maps to the Bernoulli
+probability parameter $p$ via the log-odds or "logit" link function.
 
 \begin{equation} 
-h(\mathbf{x}_i) = \log{\frac{p(\mathbf{x}_i)}{1 - p(\mathbf{x}_i)}}
+f(\mathbf{x}_i) = \log{\frac{p(\mathbf{x}_i)}{1 - p(\mathbf{x}_i)}}
 \end{equation}
 
 This formulation maps the boundless hypotheses 
 onto probabilities $p \in \\{0, 1\\}$ by just solving for $p$:
 
 \begin{equation} 
-p(\mathbf{x}_i) = \frac{1}{1 + \exp{(-h(\mathbf{x}_i))}}
+p(\mathbf{x}_i) = \frac{1}{1 + \exp{(-f(\mathbf{x}_i))}}
 \end{equation}
 
 
 Loss function
 
-For labels following the binary indicator convention $y \in \{0, 1\}$:
+For labels following the binary indicator convention $y \in \\{0, 1\\}$, 
+all of the following are equivalent. The easiest way to prove
+they are equivalent is to plug in $y = 0$ and $y = 1$ and rearrange.
 
 $$\begin{eqnarray}
 \ell & = & -y_i\log{p(\mathbf{x}_i)} - (1 - y_i)\log{(1 - p(\mathbf{x}_i))} \\
-  & = & abc
+  & = & y_i \log{(1 + \exp{(-f(\mathbf{x}_i))})} + (1 - y_i) \log{(1 + \exp{(f(\mathbf{x}_i))})}  \\
+  & = & - y_i f(\mathbf{x}_i) + \log{(1 + \exp{(f(\mathbf{x}_i))})}
 \end{eqnarray}$$
 
-For labels following the transformed convention $z = 2y-1 \in \{-1, 1\}$:
+The first form is useful if you want to use different link functions. 
 
-\begin{equation}
-\log{h(\mathbf{x}_i)} - (1 - y_i)\log{(1 - h(\mathbf{x}_i))}
-\end{equation}
+For labels following the transformed convention $z = 2y-1 \in \\{-1, 1\\}$:
+
+$$\begin{equation}
+\ell = \log{(1 + exp{(-g f(\mathbf{x}_i))})}
+\end{equation}$$
+
+Gradient
+
+$$\begin{eqnarray}
+\frac{\partial \ell}{\partial f} & = & p(\mathbf{x}_i) - y_i 
+\end{eqnarray}$$
+
+Hessian
+
+$$\begin{eqnarray}
+\frac{\partial^2 \ell}{\partial f^2} & = & p(\mathbf{x}_i)(1 - p(\mathbf{x}_i)) 
+\end{eqnarray}$$
+
 
 
 ## Cox proportional hazards survival
 
 Likelihood function: Cox partial likelihood
 
-Loss function
+Loss function 
 
 Gradient
 
@@ -139,15 +235,30 @@ Hessian
 
 Likelihood function
 
-Loss function
+Loss function, sometimes called the pinball loss.
+
+$$\begin{eqnarray}
+\ell & = & (y_i - f(\mathbf{x}_i)) ( \tau  - \mathbb{1}_{y_i < f(\mathbf{x}_i)} ) \\
+& = & \sum_{y_i \geq f(\mathbf{x}_i)}\tau (y_i - f(\mathbf{x}_i)) - \sum_{y_i < f(\mathbf{x}_i)}(1 - \tau) (y_i - f(\mathbf{x}_i))
+\end{eqnarray}$$
+
 
 Gradient
 
+$$\begin{eqnarray}
+\frac{\partial \ell}{\partial f} & = & - ( \tau  - \mathbb{1}_{y_i < f(\mathbf{x}_i)} ) \\
+  & = & - \sum_{y_i \geq f(\mathbf{x}_i)}\tau + \sum_{y_i < f(\mathbf{x}_i)}(1 - \tau)
+\end{eqnarray}$$
+
 Hessian
+
+$$\begin{eqnarray}
+\frac{\partial^2 \ell}{\partial f^2} & = & 0
+\end{eqnarray}$$
 
 ## Mean absolute deviation
 
-Mean absolute deviation is quantile regression at $\alpha=0.5$.
+Mean absolute deviation is quantile regression at $\tau=0.5$.
 
 ## Hinge
 
