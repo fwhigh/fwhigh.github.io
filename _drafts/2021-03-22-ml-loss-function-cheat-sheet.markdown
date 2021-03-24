@@ -280,7 +280,11 @@ $$\begin{eqnarray}
 \frac{\partial^2 \ell_i}{\partial f^2} = - \frac{1}{1} + \frac{1}{1}
 \end{eqnarray}$$
 
-## Weibull survival
+## Accelerated failure time
+
+https://arxiv.org/pdf/2006.04920.pdf
+
+
 
 
 ## More survival
