@@ -91,7 +91,7 @@ is also the maximum likelihood estimate,
 abbreviated MLE. 
 
 I am ignoring an additional term called the model evidence or marginal likelihood,
-which is a probability that the prior and the lilihood are divided by.
+which is a probability that the prior and the likelihood are divided by.
 This term is immediately discarded because it does not depend on
 model parameters $\theta$, and maximizing the full posterior probability is
 equivalent to maximizing just the prior times the likelihood.
