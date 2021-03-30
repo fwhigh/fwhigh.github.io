@@ -7,7 +7,7 @@ categories:
   - machine learning
 tags:
   - loss function
-excerpt: Cheat sheet for likelihoods, loss functions, gradients, and Hessians.
+excerpt: Here's where that n and that 2 come from in the square-loss objective function, in gory detail.
 toc: true
 toc_sticky: true
 classes: wide
