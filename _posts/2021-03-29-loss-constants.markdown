@@ -58,7 +58,7 @@ and the features or independent variables $\mathbf{x}$
 (a vector).
 The target and the features are paired into tuples
 $y_i\vert \mathbf{x}_i$ read "y given x" for all
-data points index by i from 1 to $N$, 
+data points indexed by i from 1 to $N$, 
 the size of the data set.
 The set of all data is $$\{ y_i \vert \mathbf{x}_i \}$$.
 
@@ -97,7 +97,7 @@ model parameters $\theta$, and maximizing the full posterior probability is
 equivalent to maximizing just the prior times the likelihood.
 I bring this up because discarding the marginal likelihood
 does not affect the constants that enter into the 
-opimtization problem. 
+optimization problem. 
 
 Optimization is more conveniently performed in log space.
 Maximization is turned into minimization by multiplying by $-1$;
@@ -201,7 +201,7 @@ Q(\theta) & = & \frac{\vert \theta \vert}{b} + \sum_i^N \frac{(y_i - f(\mathbf{x
 To be super clear, 
 I've simple taken the negative log-prior term that depends on $\theta$
 and the negative log-likelihood term that depends on $\theta$ and labeled it 
-$O(\theta)$. 
+$Q(\theta)$. 
 This is not quite yet the total loss I talked about at the beginning.
 We're getting there.
 
