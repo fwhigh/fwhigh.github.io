@@ -12,6 +12,7 @@ tags:
   - metaflow
   - lightgbm
   - keras
+  - featured
 excerpt: Demo of configurable, parallel LightGBM vs Keras model selection using Metaflow, including hyperparameter tuning, cross-validation, and early stopping. 
 toc: true
 toc_sticky: true

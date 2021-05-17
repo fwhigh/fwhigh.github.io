@@ -11,6 +11,7 @@ tags:
   - grep
   - awk
   - gnu parallel
+  - featured
 excerpt: I get a nearly 6x speedup over standard grep by using GNU parallel.
 ---
 

@@ -6,9 +6,10 @@ categories:
   - statistics
   - big data
   - streaming algorithms
+  - featured
 tags:
   - resampling
-  - Monte Carlo
+  - monte carlo
 excerpt: The streaming distributed bootstrap is a really fun solution, and I've mocked up a Python package to test it out.
 ---
 
