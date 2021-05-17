@@ -20,7 +20,7 @@ locale                   : "en-US"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Will High"
-description              : "Machine learning and big data analysis for practicing data scientists."
+description              : "Machine learning and data analysis for practicing data scientists."
 url                      : https://www.highonscience.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -51,7 +51,7 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-  hide                   : # true, false (default)
+  hide                   : true # true, false (default)
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
 search_provider          : # lunr (default), algolia, google
@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "Will High"
   avatar           : "/assets/images/203792_square.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Machine learning data scientist and PhD physicist. Currently at Netflix. Views mine."
+  bio              : "Machine learning data scientist and PhD physicist."
   location         : "Los Angeles, CA"
   email            :
   links:
@@ -187,6 +187,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 # Conversion
 markdown: kramdown
 mathjax: true
+tikzjax: true
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"

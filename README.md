@@ -5,7 +5,7 @@ Built with [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-m
 ## View locally
 
 ```bash
-bundle exec jekyll serve --watch --drafts
+bundle exec jekyll serve --watch --drafts --incremental --livereload --future --open-url
 ```
 
 View on http://127.0.0.1:4000/.
