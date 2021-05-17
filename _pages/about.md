@@ -8,7 +8,7 @@ author_profile: false
 
 
 <figure style="width: 200px;" class="align-right">
-  <img style="border-radius: 50%;" src="{{ site.url }}{{ site.baseurl }}/assets/images/2021-selfie-2.jpg" alt="">
+  <img style="border-radius: 50%;" src="{{ site.url }}{{ site.baseurl }}/assets/images/William-High-headshot-white-bg-square.png" alt="">
 </figure> 
 I'm a machine learning data scientist
 passionate about building ML based systems
