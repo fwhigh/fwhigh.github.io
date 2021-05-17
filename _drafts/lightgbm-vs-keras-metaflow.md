@@ -3,6 +3,8 @@ title: "LightGBM vs Keras Model Selection At Scale Using Metaflow"
 date: 2021-05-24 12:00:00 -0700
 comments: true
 author: "Will High"
+header:
+  overlay_color: "#000"
 categories: 
   - machine learning
   - engineering

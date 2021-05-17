@@ -3,8 +3,13 @@ permalink: /about/
 title: "About"
 excerpt: "About Will High"
 last_modified_at: 2021-03-15T15:10:00-07:00
+author_profile: false
 ---
 
+
+<figure style="width: 200px;" class="align-right">
+  <img style="border-radius: 50%;" src="{{ site.url }}{{ site.baseurl }}/assets/images/2021-selfie-2.jpg" alt="">
+</figure> 
 I'm a machine learning data scientist
 passionate about building ML based systems
 that delight their users. 
