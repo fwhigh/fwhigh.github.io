@@ -4,7 +4,7 @@ Will High:
   name        : "Will High"
   # uri         : "http://thewhip.com"
   email       : #"billy@rick.com"
-  bio         : "Machine learning data scientist and PhD physicist. Currently at Discord, previously Netflix and startups."
+  bio         : "Machine learning data scientist and PhD physicist."
   avatar      : "/assets/images/2021-selfie.jpg"
   links:
     - label: "Email"
