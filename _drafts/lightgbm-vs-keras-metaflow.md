@@ -114,13 +114,13 @@ and repeat the tournament over time as well.
 You can run the model selection tournament immediately like this. 
 Install a convenience package called metaflow-helper.
 
-{% include gist_embed.html data_gist_id="fwhigh/6dba6e364210b79b8da126f9019dde41" data_gist_file="model_selection_quickstart_install.sh" %}
+{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="model_selection_quickstart_install.sh" %}
 
 Then run the Metaflow tournament job. 
 This one needs a few more packages, including Metaflow itself, 
 which metaflow-helper doesn't currently require.
 
-{% include gist_embed.html data_gist_id="fwhigh/6dba6e364210b79b8da126f9019dde41" data_gist_file="model_selection_quickstart_train_run.sh" %}
+{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="model_selection_quickstart_train_run.sh" %}
 
 Results are printed to the screen, 
 but they are also summarized in a local file `results/<run-id>/summary.txt`
@@ -209,7 +209,7 @@ This specific example may well be a naive search,
 but the main purpose right now is to demonstrate what is possible.
 The spec can be extended arbitrarily for real-world applications.
 
-{% include gist_embed.html data_gist_id="fwhigh/6dba6e364210b79b8da126f9019dde41" data_gist_file="model_selection_contenders_spec.py" %}
+{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="model_selection_contenders_spec.py" %}
 
 The model is specified in a reserved key, `'__model'`.
 The value of `'__model'` is a fully qualified Python object path string.
