@@ -1,0 +1,415 @@
+data set:
+{
+    "type_0": {
+        "n_samples": 10000,
+        "noise": 100,
+        "n_features": 10,
+        "n_informative": 5,
+        "coef": true,
+        "random_state": 0
+    }
+}
+
+
+In place 1 with score 0.695542650904541
+contender:
+{
+    "__model": "metaflow_helper.models.KerasRegressor",
+    "__model__fit_kwargs__batch_size": null,
+    "__model__fit_kwargs__epochs": 10000,
+    "__model__fit_kwargs__min_delta": 0.1,
+    "__model__fit_kwargs__monitor": "val_mse",
+    "__model__fit_kwargs__patience": 10,
+    "__model__fit_kwargs__validation_split": 0.2,
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__build_model": "metaflow_helper.models.build_keras_regression_model",
+    "__model__init_kwargs__dense_layer_widths": [
+        15
+    ],
+    "__model__init_kwargs__l1_factor": 2.3766750154130985e-07,
+    "__model__init_kwargs__l2_factor": 7.324550648586237e-06,
+    "__model__init_kwargs__metric": "mse",
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6994253999656919,
+        0.6901515866143006,
+        0.6970129960254067,
+        0.7095806837661284,
+        0.6815425881511774
+    ],
+    "iterations": [
+        18,
+        24,
+        39,
+        24,
+        29
+    ],
+    "mean_score": 0.695542650904541,
+    "sem_score": 0.0046870531944333185,
+    "mean_iteration": 26.8,
+    "sem_iteration": 3.512833614050059
+}
+
+
+In place 2 with score 0.6955090328841081
+contender:
+{
+    "__model": "metaflow_helper.models.KerasRegressor",
+    "__model__fit_kwargs__batch_size": null,
+    "__model__fit_kwargs__epochs": 10000,
+    "__model__fit_kwargs__min_delta": 0.1,
+    "__model__fit_kwargs__monitor": "val_mse",
+    "__model__fit_kwargs__patience": 10,
+    "__model__fit_kwargs__validation_split": 0.2,
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__build_model": "metaflow_helper.models.build_keras_regression_model",
+    "__model__init_kwargs__dense_layer_widths": [
+        15,
+        15
+    ],
+    "__model__init_kwargs__l1_factor": 0.0007257890797710989,
+    "__model__init_kwargs__l2_factor": 1.5191276140805918e-07,
+    "__model__init_kwargs__metric": "mse",
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6994383085819178,
+        0.6900773384975396,
+        0.6970967060936644,
+        0.7095759953717028,
+        0.6813568158757163
+    ],
+    "iterations": [
+        10,
+        14,
+        16,
+        16,
+        23
+    ],
+    "mean_score": 0.6955090328841081,
+    "sem_score": 0.004720317243146011,
+    "mean_iteration": 15.8,
+    "sem_iteration": 2.1071307505705477
+}
+
+
+In place 3 with score 0.6955067766964982
+contender:
+{
+    "__model": "metaflow_helper.models.KerasRegressor",
+    "__model__fit_kwargs__batch_size": null,
+    "__model__fit_kwargs__epochs": 10000,
+    "__model__fit_kwargs__min_delta": 0.1,
+    "__model__fit_kwargs__monitor": "val_mse",
+    "__model__fit_kwargs__patience": 10,
+    "__model__fit_kwargs__validation_split": 0.2,
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__build_model": "metaflow_helper.models.build_keras_regression_model",
+    "__model__init_kwargs__dense_layer_widths": [
+        15
+    ],
+    "__model__init_kwargs__l1_factor": 0.0038634869373512636,
+    "__model__init_kwargs__l2_factor": 1.9200835549095098e-05,
+    "__model__init_kwargs__metric": "mse",
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6993686773260717,
+        0.6900481418886297,
+        0.6970118166239108,
+        0.7096423687220959,
+        0.6814628789217834
+    ],
+    "iterations": [
+        27,
+        36,
+        18,
+        28,
+        37
+    ],
+    "mean_score": 0.6955067766964982,
+    "sem_score": 0.004711805080021134,
+    "mean_iteration": 29.2,
+    "sem_iteration": 3.455430508634199
+}
+
+
+In place 4 with score 0.695450140543385
+contender:
+{
+    "__model": "metaflow_helper.models.KerasRegressor",
+    "__model__fit_kwargs__batch_size": null,
+    "__model__fit_kwargs__epochs": 10000,
+    "__model__fit_kwargs__min_delta": 0.1,
+    "__model__fit_kwargs__monitor": "val_mse",
+    "__model__fit_kwargs__patience": 10,
+    "__model__fit_kwargs__validation_split": 0.2,
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__build_model": "metaflow_helper.models.build_keras_regression_model",
+    "__model__init_kwargs__dense_layer_widths": [
+        15,
+        15
+    ],
+    "__model__init_kwargs__l1_factor": 0.0031645312746200497,
+    "__model__init_kwargs__l2_factor": 7.218141452295134e-07,
+    "__model__init_kwargs__metric": "mse",
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6996107656475139,
+        0.6898669700259565,
+        0.6965310970334174,
+        0.709815580715101,
+        0.6814262892949365
+    ],
+    "iterations": [
+        8,
+        7,
+        4,
+        21,
+        15
+    ],
+    "mean_score": 0.695450140543385,
+    "sem_score": 0.0047575484042881476,
+    "mean_iteration": 11.0,
+    "sem_iteration": 3.082207001484488
+}
+
+
+In place 5 with score 0.6953955968791995
+contender:
+{
+    "__model": "metaflow_helper.models.KerasRegressor",
+    "__model__fit_kwargs__batch_size": null,
+    "__model__fit_kwargs__epochs": 10000,
+    "__model__fit_kwargs__min_delta": 0.1,
+    "__model__fit_kwargs__monitor": "val_mse",
+    "__model__fit_kwargs__patience": 10,
+    "__model__fit_kwargs__validation_split": 0.2,
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__build_model": "metaflow_helper.models.build_keras_regression_model",
+    "__model__init_kwargs__dense_layer_widths": [
+        225
+    ],
+    "__model__init_kwargs__l1_factor": 0.00013449559165354527,
+    "__model__init_kwargs__l2_factor": 5.662511084397291e-07,
+    "__model__init_kwargs__metric": "mse",
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6991699202908541,
+        0.6897120135940149,
+        0.6969314874504409,
+        0.7093235163589632,
+        0.6818410467017249
+    ],
+    "iterations": [
+        13,
+        8,
+        19,
+        7,
+        9
+    ],
+    "mean_score": 0.6953955968791995,
+    "sem_score": 0.004618551545510132,
+    "mean_iteration": 11.2,
+    "sem_iteration": 2.2
+}
+
+
+In place 6 with score 0.6855157605122939
+contender:
+{
+    "__model": "metaflow_helper.models.LightGBMRegressor",
+    "__model__fit_kwargs__early_stopping_rounds": 10,
+    "__model__fit_kwargs__eval_metric": "mse",
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__learning_rate": 0.014829947571683747,
+    "__model__init_kwargs__max_depth": 1,
+    "__model__init_kwargs__n_estimators": 10000,
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.692743001794547,
+        0.6773694590146752,
+        0.6889260979537604,
+        0.697792021525111,
+        0.6707482222733758
+    ],
+    "iterations": [
+        2466,
+        1962,
+        2640,
+        2380,
+        1884
+    ],
+    "mean_score": 0.6855157605122939,
+    "sem_score": 0.004995059640281568,
+    "mean_iteration": 2266.4,
+    "sem_iteration": 146.83514565661724
+}
+
+
+In place 7 with score 0.6852057863291823
+contender:
+{
+    "__model": "metaflow_helper.models.LightGBMRegressor",
+    "__model__fit_kwargs__early_stopping_rounds": 10,
+    "__model__fit_kwargs__eval_metric": "mse",
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__learning_rate": 0.01155295116805112,
+    "__model__init_kwargs__max_depth": 1,
+    "__model__init_kwargs__n_estimators": 10000,
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6924506783605605,
+        0.6776252685938009,
+        0.6880301401985548,
+        0.6974723358228051,
+        0.6704505086701896
+    ],
+    "iterations": [
+        2960,
+        2589,
+        2909,
+        2925,
+        2317
+    ],
+    "mean_score": 0.6852057863291823,
+    "sem_score": 0.004930091985631023,
+    "mean_iteration": 2740.0,
+    "sem_iteration": 125.08317232945444
+}
+
+
+In place 8 with score 0.6819122908953194
+contender:
+{
+    "__model": "metaflow_helper.models.LightGBMRegressor",
+    "__model__fit_kwargs__early_stopping_rounds": 10,
+    "__model__fit_kwargs__eval_metric": "mse",
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__learning_rate": 0.01517698781624113,
+    "__model__init_kwargs__max_depth": 2,
+    "__model__init_kwargs__n_estimators": 10000,
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.688284427437198,
+        0.6767400715633806,
+        0.6841209087442117,
+        0.6933898250183314,
+        0.6670262217134756
+    ],
+    "iterations": [
+        1163,
+        1169,
+        1083,
+        1213,
+        855
+    ],
+    "mean_score": 0.6819122908953194,
+    "sem_score": 0.004612823511473291,
+    "mean_iteration": 1096.6,
+    "sem_iteration": 63.93559259129456
+}
+
+
+In place 9 with score 0.6819022716104748
+contender:
+{
+    "__model": "metaflow_helper.models.LightGBMRegressor",
+    "__model__fit_kwargs__early_stopping_rounds": 10,
+    "__model__fit_kwargs__eval_metric": "mse",
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__learning_rate": 0.0941465331444257,
+    "__model__init_kwargs__max_depth": 2,
+    "__model__init_kwargs__n_estimators": 10000,
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6879752951533237,
+        0.6771227389454941,
+        0.6834463288914769,
+        0.6926700412069088,
+        0.6682969538551708
+    ],
+    "iterations": [
+        188,
+        191,
+        204,
+        190,
+        141
+    ],
+    "mean_score": 0.6819022716104748,
+    "sem_score": 0.004261215751633015,
+    "mean_iteration": 182.8,
+    "sem_iteration": 10.82312339391915
+}
+
+
+In place 10 with score 0.6814279056494857
+contender:
+{
+    "__model": "metaflow_helper.models.LightGBMRegressor",
+    "__model__fit_kwargs__early_stopping_rounds": 10,
+    "__model__fit_kwargs__eval_metric": "mse",
+    "__model__fit_kwargs__verbose": 0,
+    "__model__init_kwargs__learning_rate": 0.02959252198130941,
+    "__model__init_kwargs__max_depth": 2,
+    "__model__init_kwargs__n_estimators": 10000,
+    "__model__init_kwargs__input_dim": 11,
+    "__model__init_kwargs__mode": "TEST"
+}
+results:
+{
+    "scores": [
+        0.6884315630001816,
+        0.6754045235102628,
+        0.683467126702499,
+        0.6927600194219476,
+        0.6670762956125376
+    ],
+    "iterations": [
+        565,
+        540,
+        548,
+        598,
+        436
+    ],
+    "mean_score": 0.6814279056494857,
+    "sem_score": 0.00460367399143755,
+    "mean_iteration": 537.4,
+    "sem_iteration": 27.23527124887872
+}
+
+

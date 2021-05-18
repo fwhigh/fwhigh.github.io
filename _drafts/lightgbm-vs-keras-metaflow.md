@@ -8,12 +8,12 @@ header:
 categories: 
   - machine learning
   - engineering
+  - featured
 tags:
   - metaflow
   - lightgbm
   - keras
-  - featured
-excerpt: Demo of configurable, parallel LightGBM vs Keras model selection using Metaflow, including hyperparameter tuning, cross-validation, and early stopping. 
+excerpt: Configurable, parallel LightGBM vs Keras model selection using Metaflow, including randomized hyperparameter tuning, cross-validation, and early stopping. 
 toc: true
 toc_sticky: true
 classes: wide
@@ -30,6 +30,10 @@ examples/model-selection/results/1621116705680653
 - 10_000 samples, noise 10, 2 categories
 examples/model-selection/results/1621117548416977
 - 10_000 samples, noise 100, 2 categories
+examples/model-selection/results/1621302832648370
+- 10_000 samples, noise 100, 1 categories, randomized search
+examples/model-selection/results/1621303262250162
+- 10_000 samples, noise 100, 2 categories, randomized search
 -->
 
 # Overview
@@ -47,22 +51,24 @@ helping others get the most out of it.
 
 This post demonstrates one of the ways I like to use it: 
 machine learning model selection at scale. 
-I'll compare 7 total different hyperparameter settings for
+I'll compare 5 total different hyperparameter settings for each of
 LightGBM and Keras regressors,
-each with 5 fold cross validation and early stopping,
+with 5 fold cross validation and early stopping,
 trained and scored on a mock data set.
-All 35 of these instances are executed in parallel.
+All 50 of these instances are executed in parallel.
 The following box plots show the min and max
 and the 25th, 50th (median), and 75th percentiles
 of r-squared score.
 
 <figure class="align-center" style="display: table;">
-    <a href="/assets/lightgbm-vs-keras-metaflow/1621115192490006/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621115192490006/all-scores.png" /></a>
-    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, one category: any of the tested Keras architectures wins on r-squared score.</figcaption>
+    <a href="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png" /></a>
+    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, one category: any of the tested Keras architectures wins on r-squared score. 
+    The narrow single-hidden-layer one happened to be best overall, with l1 factor 2.4e-7 and l2 factor 7.2e-6.</figcaption>
 </figure>
 <figure class="align-center" style="display: table;">
-    <a href="/assets/lightgbm-vs-keras-metaflow/1621117548416977/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621117548416977/all-scores.png" /></a>
-    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, two categories: LightGBM with interactions wins on r-squared score.</figcaption>
+    <a href="/assets/lightgbm-vs-keras-metaflow/1621303262250162/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621303262250162/all-scores.png" /></a>
+    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, two categories: LightGBM with depth 3 interactions and learning rate 0.03 wins on r-squared score.
+    The LightGBM model with depth 1 performed the worst.</figcaption>
 </figure>
 
 Predictions from the best model settings
@@ -70,21 +76,24 @@ on the held out test set look like this
 for the noisy one-category data set.
 
 <figure class="align-center" style="display: table; ">
-    <a href="/assets/lightgbm-vs-keras-metaflow/1621115192490006/predicted-vs-true.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621115192490006/predicted-vs-true.png" /></a>
+    <a href="/assets/lightgbm-vs-keras-metaflow/1621302832648370/predicted-vs-true.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621302832648370/predicted-vs-true.png" /></a>
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Predicted versus true for the noisy regression, one category.</figcaption>
 </figure>
 
 For just 2 models each on a hyperparameter grid of size 10 to 100,
 and using 5 fold cross validation, 
-cardinality can reach between about 100 and 1000 jobs. 
+cardinality can reach between of order 100 to 1000 jobs. 
+It's easy to imagine making that even bigger with more models
+or hyperparameter combinations.
 Running Metaflow in the cloud (e.g. AWS) 
 lets you execute each one of them
 concurrently in isolated containers.
-I've seen the cardinality blow up yet another order of magnitude or two
+I've seen the cardinality blow up to of order 10,000 or more
 and things still work just fine, 
 as long as you've got the time,
 your settings are reasonable, 
 and your account with your cloud provider is big enough.
+With the 
 
 The code is available at
 [https://github.com/fwhigh/metaflow-helper](https://github.com/fwhigh/metaflow-helper).
@@ -120,9 +129,9 @@ along with some plots.
 This is the flow you are running. 
 The mock data is generated in the start step.
 The next step splits across all hyperparameter grid points
-for all contenders -- 7 total for 2 models in the case of this example.
-Then there are 5 tasks for each of 5 cross validation folds, 
-for a total of 35 tasks.
+for all contenders -- 10 total for 2 models in the case of this example.
+Then there are 5 tasks for each cross validation fold, 
+for a total of 50 tasks.
 Models are trained in these tasks directly.
 The next step joins the folds and summarizes the results by
 model and hyperparameter grid point.
@@ -176,16 +185,29 @@ with the `contenders_spec` object.
 Implement this spec object like you would any hyperparameter grid that you would
 pass to 
 [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) 
-or
-[ParameterGrid](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.ParameterGrid.html). 
+or 
+[RandomizedSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html),
+or equivalently 
+[ParameterGrid](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.ParameterGrid.html)
+or 
+[ParameterSampler](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.ParameterSampler.html). 
+Randomized search is automaticallly used if the `'__n_iter'` key is present in the contender spec,
+otherwise the flow will fall back to grid search. 
+
 
 Here's an illustration of tuning two models.
-The LightGBM model is being tuned over 3 different `max_depth` settings.
-The Keras model is being tuned over 4 different layer architectures:
-* no hidden layers
-* one hidden layer of size 15
-* two hidden layers each of size 15
-* one wide hidden layer of size 225
+The LightGBM model is being tuned over 5 random `max_depth` and `learning_rate` settings.
+The Keras model is being tuned over 5 different combinations of layer architectures 
+and regularizers. The layer architectures are
+* no hidden layers,
+* one hidden layer of size 15,
+* two hidden layers each of size 15, and 
+* one wide hidden layer of size 225.
+The regularizers are l1 and l2 factors, log-uniformly sampled 
+and applied globally to all biases, kernels, and activations.
+This specific example may well be a naive search, 
+but the main purpose right now is to demonstrate what is possible.
+The spec can be extended arbitrarily for real-world applications.
 
 {% include gist_embed.html data_gist_id="fwhigh/6dba6e364210b79b8da126f9019dde41" data_gist_file="model_selection_contenders_spec.py" %}
 
@@ -232,16 +254,7 @@ which is definitely also possible with Metaflow
 by joining each model from parallel grid tasks
 and applying another model of models.
 
-**Idea 4:** 
-Random grid search performs better than searching on evenly spaced grid points.
-I don't know off the top of my head
-how complicated it would be to support 
-randomized hyperparameter search in the `contender_spec`,
-one issue being that the values have to be random number generators 
-with args
-rather than lists of scalars and iterables. 
-
-**Idea 5:**
+**Idea 4:**
 I do wish I could simply access each task in Scikit-learn's cross-validation search
 (e.g. GridSearchCV)
 tasks and distribute those directly into Metaflow steps. 
