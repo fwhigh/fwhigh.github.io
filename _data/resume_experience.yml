@@ -1,0 +1,37 @@
+- company: Netflix
+  position: Senior Data Scientist
+  duration: Oct, 2014 &mdash; July 2018 and July, 2019 &mdash; May, 2021
+  summary: |
+    Built machine learning models to predict demand for shows on and off the service. 
+    <ul class="resume-item-list">
+      <li>A project you are proud of</li>
+      <li>Another awesome project</li>
+      <li>or a team or department you worked with</li>
+    </ul>
+
+- company: Joymode
+  position: Vice President, Data Science
+  duration:  July, 2018 &mdash; July, 2019
+  summary: |
+    If your stint was shorter, feel free to be brief and just call out the most meaningful points of your role. Be concise, and be meaninful. The person reading just needs enough to want to talk to you more about your experience.
+
+- company: Sociocast Networks
+  position: Data Scientist
+  duration:   August, 2013  &mdash; October, 2014
+  summary: Led communication efforts across digital and traditional media channels for marketing and public relations, internal communication strategies, and coordinated support programs for the recipients of the center's services.
+
+- company: ThoughtWorks
+  position: Data Scientist
+  duration:   February, 2013  &mdash; July, 2013
+  summary: Led communication efforts across digital and traditional media channels for marketing and public relations, internal communication strategies, and coordinated support programs for the recipients of the center's services.
+
+- company: University of Chicago
+  position: Postdoctoral Research Scholar
+  duration:   July, 2011  &mdash; February, 2013
+  summary: |
+    <ul class="resume-item-list">
+      <li>Researched gravitational lensing using the Hubble Space Telescope and Magellan Telescopes in Chile</li>
+      <li>Awarded N Hubble orbits and $X in two research proposals</li>
+      <li>Published four papers</li>
+      <li>Mentored undergraduate and graduate students in astrophysics research</li>
+    </ul>

@@ -1,38 +1,35 @@
 ---
-layout: category
-taxonomy: featured
-entries_layout: # list (default), grid
+title: "Will High"
+layout: splash
+date: 2016-03-23T11:48:41-04:00
+header:
+  overlay_color: "#000"
+  overlay_filter: "0.5"
+  overlay_image: /assets/images/IMG_0510.JPG
+  #actions:
+  #  - label: "Download"
+  #    url: "https://github.com/mmistakes/minimal-mistakes/"
+  #caption: ""
+excerpt: "Machine learning scientist"
+intro: 
+  - excerpt: 'Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, *proin faucibus* voluptate felis id sollicitudin. Centered with `type="center"`'
+feature_row1:
+  - title: "The Streaming Distributed Bootstrap"
+    excerpt: "The streaming distributed bootstrap is a really fun solution, and I've mocked up a Python package to test it out."
+    url: "/blog/2017/06/15/streaming-distributed-bootstrap/"
+    btn_label: "Read"
+    btn_class: "btn--primary"
+  - title: "Parallel Grep and Awk"
+    excerpt: "I get a nearly 6x speedup over standard grep by using GNU parallel."
+    url: "/blog/2021/03/21/parallel-grep/"
+    btn_label: "Read"
+    btn_class: "btn--primary"
+  - title: "Where Those Loss Constants Come From"
+    excerpt: "Here's where that n and that 2 come from in the square-loss objective function, in gory detail."
+    url: "/blog/2021/03/29/loss-constants/"
+    btn_label: "Read"
+    btn_class: "btn--primary"
 ---
 
-<!-- Style is customized in assets/css/main.scss-->
-<div class="page__hero--overlay" ;> 
-  <div class="wrapper">
-    <h1 id="page-title" class="page__title page__title__custom" itemprop="headline">
-      Will High
-    </h1>
-    <p class="page__lead page__lead__custom">
-      Machine Learning Scientist
-    </p>
-  </div>
-</div>
+{% include feature_row id="feature_row1" %}
 
-<h3 class="archive__subtitle">Featured posts</h3>
-
-<!-- {% assign posts = site.posts %}
-
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="entries-{{ entries_layout }}">
-  {% for post in posts %}
-    {% if forloop.index > 5 %}
-      {% break %}
-    {% endif %}
-    {% include archive-single.html type=entries_layout %}
-  {% endfor %}
-</div>
-<p><a href="/blog" class="btn btn--primary">Read More</a></p>
-
- -->
-<!-- {% include feature_row id="featured_posts" %}
-
-{% include feature_row id="other" %}
- -->
