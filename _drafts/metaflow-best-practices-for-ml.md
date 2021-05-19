@@ -11,7 +11,7 @@ categories:
   - featured
 tags:
   - metaflow
-excerpt: I've compiled a list of best practices for using Metaflow for machine learning from my years of using it at Netflix.
+excerpt: I've compiled a list of best practices for using Metaflow for machine learning from a bunch of years of using it at Netflix.
 toc: true
 toc_sticky: true
 <!-- classes: wide -->
@@ -19,15 +19,195 @@ toc_sticky: true
 
 # Overview
 
-Here's a list of ideas 
+Here's a list of practices and patterns 
 tested over roughly four or so years of experience with Metaflow
 that result in 
 an extremely short development loop;
 reusable, maintainable, and reliable code;
 and just an overall fun and rewarding developer experience. 
 
-# Best Practices
+# Best practices for ML
 
+## Minimal directory structure
+
+I'll start with a suggested minimal directory structure.
+This example has a training flow and a prediction flow,
+with common code across the two 
+plus a Jupyter notebook for debugging.
+
+```
+<your-repo>
+├── flows
+|  ├── train.py
+|  ├── predict.py
+|  ├── debug.ipynb
+|  └── common.py
+└── .gitignore
+```
+
+The training and prediction flow specs import common code and do... you know, machine learning.
+They are separated out to support ongoing predictions on a model
+that is potentially re-trained on a different schedule.
+So you might run train.py quarterly,
+and run predict.py weekly on fresh incoming data.
+
+Check out this minimal flow example
+and note especially `import common`.
+That will come up in 
+<a href="#put-common-code-into-a-separate-script">Put common code into a separate script</a>.
+
+{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="train.py" %}
+
+## Git-ignore .metaflow
+
+Add `.metaflow` to your .gitignore 
+because those directories contain the local data artifacts.
+
+## Put common code into a separate script
+
+In the minimal code structure and flow example I've got a script called
+common.py. That contains reusable functions, classes,
+and variables that both train.py and predict.py can use. 
+Besides permitting reuse, 
+pulling your code into a separate script makes it more easily testable 
+and shortens your Metaflow steps and overall flow spec. 
+
+## Debug in Jupyter a notebook
+
+You can debug common code and access Metaflow data artifacts
+in Jupyter notebooks.
+Here's a minimal example of all of that.
+
+{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="debug.ipynb" %}
+
+I'm using autoreload magic so that I can make changes to common.py 
+and have those changes immediately reflected at the cell level 
+without having to re-import common or otherwise run a bunch of other cells.
+Your working directory should be the one common.py lives in for this to work.
+
+(Note that that debug snippet shows artifacts from my previous post,
+{% comment %} 
+<!-- TODO Uncomment the following after the model selection post goes live-->
+[LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-lightgbm-vs-keras-metaflow %}).)
+{% endcomment %}
+
+## Develop a separate Python package
+
+When it makes sense to (and not earlier) 
+I try to separate out my 
+more broadly reusable code into a separate, pip-installable Python package.
+You can put the code in the same repo, or break it out into another one.
+Here's a minimal example of putting it in the same repo.
+
+```
+<your-repo>
+├── flows
+|  ├── train.py
+|  ├── predict.py
+|  ├── debug.ipynb
+|  └── common.py
+├── .gitignore
+├── your_package
+|  ├── __init__.py
+|  └── models.py
+└── setup.py
+```
+
+Adding the setup.py makes `your_package` pip installable.
+I won't wade into suggesting what to put into setup.py, I'll leave that to many others
+who have already done a great job with that.
+During development I'll 
+fire up a Python venv with `python -m venv venv && . venv/bin/activate`
+and then install the package in editable mode
+with `pip install -e .`,
+all from the top level of the repo.
+
+In each Metaflow step I'll pip install from git if the package is not already locally available.
+Here are the functions that do that, which I put into common.py.
+
+{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="common.py" %}
+
+Now at the top of each step you would do something like:
+
+```python
+common.install_dependencies(
+	{'your_package': 'git+ssh://git@github.com/<github-username>/<your-repo>.git'}
+)
+```
+
+This will try to `import your_package` (the dictionary key)
+and if it fails, pip-install from Github.
+Doing this will seem like nonsense during development, but when you 
+deploy to a production environment this will become necessary.
+Installing via pip lets you get athe code from Github or PyPI,
+and will let you pin in both cases.
+Here are some different ways to pin.
+
+```python
+# Install the latest commit from the default branch
+{'your_package': 'git+ssh://git@github.com/<github-username>/<your-repo>.git'}
+# Pin by installing a tagged commit
+{'your_package': 'git+ssh://git@github.com/<github-username>/<your-repo>.git@v0.0.1'}
+# Pin by installing a commit hash
+{'your_package': 'git+ssh://git@github.com/<github-username>/<your-repo>.git@00db203'}
+# Install from PyPI
+{'your_package': 'your_package'}
+# Pin by install from a PyPI version
+{'your_package': 'your_package==0.0.1'}
+# etc etc
+```
+
+On that note...
+
+## Pin your packages
+
+If you plan on running your flows on a cron schedule or against
+triggers over long periods of time,
+do yourself a favor and pin your packages,
+especially of we're talking about a flow that uses artifacts from another flow
+in the way that predict.py needs to load the model artifact persisted in train.py.
+
+It's useful to think of your Metaflow jobs like you would any long-running
+application, for instance a web app. 
+Pin for reproducibility and to minimize maintenance over the long term.
+
+You can take this thinking one step further with Metaflow:
+*think of each Metaflow **step** as an independent, long-running application*
+and pin potentially different packages at the top of every step. 
+One example where I've seen this come up is in 
+using Tensorflow. Tensorflow requires a specific version range of numpy, 
+but otherwise I want access to a more recent numpy release elsewhere.
+If you isolate your Tensorflow modeling code to a single step or set of steps,
+and do pre- and post-processing in separate steps, you can pin Tensorflow with
+a floating numpy version and in the other steps you'll in general get a different numpy version.
+The `install_dependencies` function pattern I mentioned above 
+in <a href="#develop-a-separate-python-package">Develop a separate Python package</a>
+will let you do this.
+
+## Keep flows and flow steps short
+
+If you pull common code into adjacent Python scripts 
+or into a separate package as suggested above,
+you'll be in a good position to make your flow spec
+and each of its steps as short as possible.
+
+Keeping them short is useful for readability and maintainability.
+You'll also invariable have to do
+other high-level stuff at the step level without the option of 
+pulling that code into common functions, 
+for example 
+[Metaflow step-level exception handling](https://docs.metaflow.org/metaflow/failures#catching-exceptions-with-the-catch-decorator). 
+Do flow control level operations in steps 
+and otherwise call just a few functions per step.
+
+Keeping the scope of steps small is also useful for
+resuming execution after a failed run. 
+Often times in production
+you'll get failures due to platform failures,
+and it's useful to have completed 
+as much upstream processing successsfully as possible.
+Then you can resume from the failed steps forward.
+Small scope steps makes this whole experience more enjoyable. 
 
 ## Use an IDE 
 
@@ -36,157 +216,74 @@ Debugging seems to work fine in PyCharm, but it can be a bit tricky
 to debug parallel tasks in foreach steps. 
 Using test-mode 
 (<a href="#implement-a-test-mode">Implement a test mode</a>)
+and eliminating parallel tasks helps. 
+Make sure to reuse your virtual environment interpreter if you set one up already!
+I've also set PyCharm up for Metaflow development against a remote server --
+that works pretty well, though there are a lot of configuration options to set.
 
-## Pull code into reusable functions and classes
+VS Code works as well. It's faster but has reduced functionality.
+I especially miss refactoring and fully-featured inspection when I
+use VS Code. 
+There's a time and a place for both and as always it boils down to personal preference.
 
-
-## Keep the scope of each step small
-
-
-## Keep each step short 
-
-I like to
-1. Pull reusable code into common scripts in the flow spec directory structure.
-1. Make a separate Python package and install it on the fly in every step
-where it makes sense.
-
-1 is easiest. If your flow is flow.py, just pull big chunks of code into functions 
-and put them into another python file like common.py. 
-You can brute-force test the code in a Jupyter notebook with autoreload enabled.
-This makes for a super short development loop.
-
-2 is useful when you can reuse code across multiple flows or projects, 
-and you want to harden that code even further with unit tests,
-integration tests, and open sourcing, for example.
-If you make a package and put it in Github, for example,
-then in each step you can install from source directly with
-`pip install git+ssh://git@github.com/fwhigh/metaflow-helper.git`.
-You can pin by pointing to a specific commit or tag, e.g.
-`pip install git+ssh://git@github.com/fwhigh/metaflow-helper.git@v0.0.1`
-or
-`pip install git+ssh://git@github.com/fwhigh/metaflow-helper.git@00db203`.
-Once the package matures you might push it to PyPI or conda
-and install with
-`pip install metaflow-helper==0.0.1` (similarly for conda).
-
-## Use Jupyter notebooks for testing and debugging
-
-Keep a Jupyter sandbox notebook running with autoreload enabled to debug code and data artifacts.
-
-Put the following in a cell before importing any libraries. 
-This will let you re-execute functions from your libraries or modules *at the cell level*
-without having to re-import.
-
-```python
-%load_ext autoreload
-%autoreload 2
-```
-
-Then change your working directory to the one containing your Metaflow flow spec.
-
-```python
-import os
-os.chdir(os.path.join('examples', 'model-selection'))
-```
-
-Then import your common code 
-(suggestion 1 from <a href="#keep-each-step-short">Keep each step short</a>)
-with 
-
-```python
-import common
-```
-
-Now when you use `result = common.some_function()` in a cell and make changes to 
-`some_function` in commony.py, 
-you can just rerun the cell and it'll reflect the changes.
-
-## Use Jupyter notebooks for inspecting data artifacts
-
-Where these practices get really powerful is
-when you combin this step with 
-<a href="#use-jupyter-notebooks-for-testing-and-debugging">Use Jupyter notebooks for testing and debugging</a>.
-Add an import cell like this.
-
-```python
-from metaflow import Flow, Run, Step
-```
-
-Now you can load data artifacts from a given run ID and 
-*test new common.py code directly on the data, on the fly*.
-If my flow spec is called `Train` and I'm testing
-a step (can be a foreach parallel step) called 
-`foreach_fold`, I can acces the first
-task's data pointer like this.
-
-```python
-run_id = '1621297047781971'
-data = list(Step(f'Train/{run_id}/foreach_fold'))[0].data
-```
-
-If I want to look at the dataframe I've persisted there I do
-
-```python
-df = data.df
-```
-
-This loads the data on the fly from the Metaflow datastore, 
-which may be in the cloud on, say, AWS S3.
-Loading the data once into a local object in memory
-is a good idea. Now you can use the data 
-in common.py functions.
-
-```python
-result = common.some_function(df)
-```
-
-Make a change to `some_function` in common.py and 
-you can rerun just the above line in a cell 
-without having to reimport the code
-or reload the data.
+I haven't tested other IDEs like Spyder. 
+I'd like to hear if others have and what
+the good and the bad are about each one.
 
 ## Implement a test mode
 
-Use a flag parameter that you can use to 
-subset the data and reduce parallelism to 1 concurrent task,
-if at all possible. 
+Implement a test mode that will run your flow as-is
+but on as small a data set as possible and with hyperparameter settings
+that make the ML training opitimization as quick as possible.
+I like to do this by creating
+a flag parameter that use to optionally 
+subset the data and reduce parallelism to 1 concurrent task for every step. 
 If you're training a model,
 reduce the number of maximum possible optimization iterations to
 something small like 10 epochs.
+Here's one way to create a test-mode using a Metaflow Parameter.
 
-```python
-from metaflow import FlowSpec, Parameter, step
-import commmon
+{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="test_mode.py" %}
 
+Now I can run the flow normally with
 
-class Train(FlowSpec):
+```bash
+python train.py
+```
 
-    test_mode = Parameter(
-        'test_mode',
-        help="Run in test mode?",
-        type=bool,
-        default=False,
-    )
+or in test mode with
 
-    @step
-    def start(self):
-    	if self.test_mode:
-    		# Get a subset of data and reduce parallelism here
- 			self.df = common.get_dataframe(max_rows=100)
- 			self.max_epochs = 10
- 			self.patience = 1
- 		else:
- 			self.df = common.get_dataframe()
- 			self.epochs = 10_000
- 			self.patience = 50
+```bash
+python train.py --test_mode 1
 ```
 
 I did a variant of this in my 
 [model selection example](https://github.com/fwhigh/metaflow-helper/tree/main/examples/model-selection)
 from 
+{% comment %} 
+<!-- TODO Uncomment the following after the model selection post goes live-->
 [LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-lightgbm-vs-keras-metaflow %}).
+{% endcomment %}
 Instead of using a boolean flag I point to different configuration files by string,
 some of which perform the same tasks of 
 subsetting the data down and shortening the model training times dramatically.
 
-## Run flows in test mode in CI/CD pipeline
+## Run flows in test mode in a CI/CD pipeline
+
+If you've got a nice, short test mode working you can run it as part of
+continuous integration/continuous delivery & deployment. 
+You'll see working examples of this in
+[metaflow-helper](https://github.com/fwhigh/metaflow-helper).
+I've got separate jobs and badges set up for unit testing and for running
+the Metaflow examples in test mode.
+
+# What did I miss?
+
+I didn't talk about more advanced practices I like, 
+such as 
+[Metaflow run tagging](https://docs.metaflow.org/metaflow/tagging#tagging)
+and setting up test and development environments
+that operate without affecting the production environment. 
+I'll cover those in another post on more advanced best practices.
+
+I'd like to hear from you on what I may have missed or how you do things differently!
