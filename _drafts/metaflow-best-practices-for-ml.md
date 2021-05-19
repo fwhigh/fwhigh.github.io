@@ -56,7 +56,7 @@ and note especially `import common`.
 That will come up in 
 <a href="#put-common-code-into-a-separate-script">Put common code into a separate script</a>.
 
-{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="train.py" %}
+{% gist c6f9c88cf94cedf2e96d6900ac0f1226 train.py %}
 
 ## Git-ignore .metaflow
 
@@ -78,7 +78,7 @@ You can debug common code and access Metaflow data artifacts
 in Jupyter notebooks.
 Here's a minimal example of all of that.
 
-{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="debug.ipynb" %}
+{% gist c6f9c88cf94cedf2e96d6900ac0f1226 debug.ipynb %}
 
 I'm using autoreload magic so that I can make changes to common.py 
 and have those changes immediately reflected at the cell level 
@@ -125,7 +125,7 @@ all from the top level of the repo.
 In each Metaflow step I'll pip install from git if the package is not already locally available.
 Here are the functions that do that, which I put into common.py.
 
-{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="common.py" %}
+{% gist c6f9c88cf94cedf2e96d6900ac0f1226 common.py %}
 
 Now at the top of each step you would do something like:
 
@@ -243,7 +243,7 @@ reduce the number of maximum possible optimization iterations to
 something small like 10 epochs.
 Here's one way to create a test-mode using a Metaflow Parameter.
 
-{% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="test_mode.py" %}
+{% gist c6f9c88cf94cedf2e96d6900ac0f1226 test_mode.py %}
 
 Now I can run the flow normally with
 
