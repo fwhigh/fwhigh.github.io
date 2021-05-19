@@ -15,4 +15,10 @@
   <link rel="stylesheet" href="/assets/css/resume.css">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  {% if site.head_scripts %}
+    {% for script in site.head_scripts %}
+      <script src="{{ script | relative_url }}"></script>
+    {% endfor %}
+  {% endif %}
 </head>
