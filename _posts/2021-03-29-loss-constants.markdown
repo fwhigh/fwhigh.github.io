@@ -4,10 +4,8 @@ date: 2021-03-29 12:00:00 -0700
 comments: true
 author: "Will High"
 categories: 
-  - machine learning
-  - featured
-tags:
-  - loss function
+  - Machine Learning
+  - Featured
 excerpt: Here's where that n and that 2 come from in the square-loss objective function, in gory detail.
 toc: true
 toc_sticky: true

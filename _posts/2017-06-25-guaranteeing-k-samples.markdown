@@ -3,14 +3,7 @@ title: "Guaranteeing k Samples in Streaming Sampling Without Replacement"
 date: 2017-06-25 00:00:00 -0700
 comments: true
 categories: 
-  - statistics
-  - big data
-  - streaming algorithms
-tags:
-  - Hive
-  - Pig
-  - resampling
-  - Monte Carlo
+  - Algorithms
 excerpt: If you need $k$ samples out of $N$ in Hive or Pig, typically you'd naively choose $p = k/N$, but this only gives you $k$ on average.
 ---
 

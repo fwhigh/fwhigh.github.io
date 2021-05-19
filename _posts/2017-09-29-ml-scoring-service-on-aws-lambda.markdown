@@ -3,12 +3,8 @@ title: "Hacking a Serverless Machine-Learning Scoring Microservice with AWS Lamb
 date: 2017-09-29 0:00:00 -0700
 comments: true
 categories: 
-  - machine learning
-  - microservices
-tags:
-  - python
-  - aws
-  - lambda
+  - Engineering
+  - Machine Learning
 excerpt: In this post I'll attempt to hack a `scikit-learn` model prediction microservice with AWS Lambda.
 ---
 

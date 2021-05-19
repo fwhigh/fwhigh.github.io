@@ -6,17 +6,16 @@ author: "Will High"
 header:
   overlay_color: "#000"
 categories: 
-  - machine learning
-  - engineering
-  - featured
-tags:
-  - metaflow
-  - lightgbm
-  - keras
+  - Machine Learning
+  - Engineering
+  - Featured
+  - Metaflow
 excerpt: Configurable, parallel LightGBM vs Keras model selection using Metaflow, including randomized hyperparameter tuning, cross-validation, and early stopping. 
 toc: true
 toc_sticky: true
-classes: wide
+author_profile: false
+sidebar:
+  nav: metaflow-sidebar
 ---
 
 <!-- 

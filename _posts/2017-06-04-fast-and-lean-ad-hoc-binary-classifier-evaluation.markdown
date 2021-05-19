@@ -4,8 +4,7 @@ date: 2015-03-08 14:05:20 -0700
 comments: true
 author: "Will High"
 categories: 
-  - statistics
-  - streaming algorithms
+  - Algorithms
 ---
 
 {% include toc %}

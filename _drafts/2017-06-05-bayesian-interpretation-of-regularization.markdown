@@ -3,13 +3,8 @@ title: "The Bayesian Interpretation of Regularization"
 date: 2017-06-28 14:05:20 -0700
 comments: true
 categories: 
-  - statistics
-  - machine learning
-tags:
-  - Bayes theorem
-  - LASSO
-  - Ridge
-  - regularization
+  - Statistics
+  - Machine Learning
 htmlwidgets: TRUE
 ---
 

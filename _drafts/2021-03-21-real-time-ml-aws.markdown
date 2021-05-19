@@ -4,13 +4,7 @@ date: 2021-03-21 12:00:00 -0700
 comments: true
 author: "Will High"
 categories: 
-  - big data
-  - streaming algorithms
-tags:
-  - bash
-  - grep
-  - awk
-  - gnu parallel
+  - Machine Learning
 excerpt: I get a nearly 6x speedup over standard grep by using GNU parallel.
 ---
 

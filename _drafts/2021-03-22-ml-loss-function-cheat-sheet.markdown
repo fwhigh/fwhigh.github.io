@@ -4,9 +4,7 @@ date: 2021-03-21 12:00:00 -0700
 comments: true
 author: "Will High"
 categories: 
-  - machine learning
-tags:
-  - loss function
+  - Machine Learning
 excerpt: Cheat sheet for likelihoods, loss functions, gradients, and Hessians.
 toc: true
 toc_sticky: true

@@ -3,12 +3,7 @@ title: "Stand Up an R Shiny Server on AWS"
 date: 2021-03-15 00:00:00 -0700
 comments: true
 categories: 
-  - engineering
-tags:
-  - aws
-  - r
-  - docker
-  - elasticbeanstalk
+  - Engineering
 excerpt: How I tricked AWS into serving R Shiny using rocker and Elastic Beanstalk.
 ---
 

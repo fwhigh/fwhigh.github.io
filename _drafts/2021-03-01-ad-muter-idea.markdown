@@ -3,12 +3,7 @@ title: "Ad Muter: Idea"
 date: 2021-03-01 12:00:00 -0700
 comments: true
 categories: 
-  - ad muter
-  - machine learning
-tags:
-  - maker
-  - open source
-  - bot
+  - Machine Learning
 excerpt: "I got an idea to build a machine learning model to mute my TV when commercials come on"
 ---
 

@@ -3,13 +3,8 @@ title: "The Streaming Distributed Bootstrap"
 date: 2017-06-15 00:05:20 -0700
 comments: true
 categories: 
-  - statistics
-  - big data
-  - streaming algorithms
-  - featured
-tags:
-  - resampling
-  - monte carlo
+  - Algorithms
+  - Featured
 excerpt: The streaming distributed bootstrap is a really fun solution, and I've mocked up a Python package to test it out.
 ---
 

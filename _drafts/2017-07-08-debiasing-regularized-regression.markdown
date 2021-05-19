@@ -3,11 +3,7 @@ title: "Debiasing Regularized Regression"
 date: 2017-07-05 12:00:00 -0700
 comments: true
 categories: 
-  - machine learning
-tags:
-  - regularization
-  - regression
-  - bias
+  - Machine Learning
 ---
 
 # tl;dr

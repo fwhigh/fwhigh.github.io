@@ -3,10 +3,7 @@ title: "Tentpole Business Theory"
 date: 2017-06-29 12:00:00 -0700
 comments: true
 categories: 
-  - statistics
-tags:
-  - business models
-  - Monte Carlo
+  - Statistics
 ---
 
 {% include toc %}

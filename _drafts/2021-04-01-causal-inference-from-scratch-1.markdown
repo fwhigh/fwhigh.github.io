@@ -3,11 +3,6 @@ title: "Causal Inference from Scratch I: Getting Our Feet Wet"
 date: 2021-04-01 12:00:00 -0700
 comments: true
 author: "Will High"
-categories: 
-  - machine learning
-  - causal inference
-tags:
-  - fundamentals
 excerpt: Cau
 toc: true
 toc_sticky: true
