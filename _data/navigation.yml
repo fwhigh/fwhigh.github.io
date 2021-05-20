@@ -25,7 +25,9 @@ metaflow-sidebar:
     children:
       - title: "Model Selection"
         url: /blog/2021/05/24/lightgbm-vs-keras-metaflow/
-      - title: 'Coming soon: Best Practices'
+      - title: "Coming soon: Best Practices"
+      - title: "Coming soon: Versioning Models"
+        # url: /blog/2021/05/28/versioning-ml-models-with-metaflow-tags/
         # url: /blog/2021/05/26/metaflow-best-practices-for-ml/
       # - title: '<span class="text-primary">Coming soon</span>: More Best Practices'
         # url: /

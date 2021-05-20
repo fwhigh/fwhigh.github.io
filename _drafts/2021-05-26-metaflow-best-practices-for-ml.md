@@ -194,6 +194,19 @@ The `install_dependencies` function pattern I mentioned above
 in <a href="#develop-a-separate-python-package">Develop a separate Python package</a>
 will let me do this.
 
+## Migrate to conda
+
+The pip-install pattern is useful for shortening 
+the development cycle, but the 
+[Metaflow maintainers recommend adopting conda](https://docs.metaflow.org/metaflow/dependencies)
+to maximize reproducibility.
+I don't have a good recommendation at this time on how to adopt the conda pattern
+while still keeping the development loop short. 
+Would 
+[pip-installing inside conda-decorated steps or even conda-installing from git](https://stackoverflow.com/questions/19042389/conda-installing-upgrading-directly-from-github),
+be reasonable? 
+I'll try these out and report back.
+
 ## Keep flows and flow steps short
 
 If you pull common code into adjacent Python scripts 
@@ -225,6 +238,18 @@ It's helpful when upstream, smaller scope steps have
 completed successfully and the runtime failure is isolated to a 
 small step.
 Small steps make the whole debugging and maintenance experience more enjoyable. 
+
+## Fail fast in your start step
+
+Your start step is an opportunity to fail fast. 
+This means things like
+* try to ping your external services, 
+* load the pointers for you Metaflow artifact dependencies, and
+* validate configuration and variables. 
+If any of your canary procedures fail,
+let the flow error out and report back to you.
+It's far better to fail in the start step if you can
+rather than failing toward the end of a potentially very long running flow.
 
 ## Use an IDE 
 
