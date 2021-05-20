@@ -10,7 +10,7 @@ categories:
   - Engineering
   - Featured
   - Metaflow
-excerpt: Configurable, parallel LightGBM vs Keras model selection using Metaflow, including randomized hyperparameter tuning, cross-validation, and early stopping. 
+excerpt: Configurable, repeatable, parallel model selection using Metaflow, including randomized hyperparameter tuning, cross-validation, and early stopping. 
 toc: true
 toc_sticky: true
 author_profile: false
@@ -37,27 +37,36 @@ examples/model-selection/results/1621303262250162
 
 # Overview
 
-I'm proud to be one of the earliest users of 
+I worked with the 
 [Metaflow](https://metaflow.org/)
-when I was at Netflix, 
-months after creation and well before it was open sourced. 
-I had the privilege of working alongside 
-its creators and a lot of talented developers who
-built some spectacular ML based applications 
-with Metaflow. 
-Now that I've left Netflix I look forward to continuing to use it, and
-helping others get the most out of it. 
+creators at Netflix from 
+the time they built their first proofs of concept. 
+About six months later I built my first flows as 
+one of the earliest adopters.
+I had been rolling my own Flask API services 
+to serve machine learning model predictions
+but Metaflow provided a much more accessible, lower
+complexity path to keep the models and services up to date.
 
-This post demonstrates one of the ways I like to use it: 
-machine learning model selection at scale. 
-I'll compare 5 total different hyperparameter settings for each of
+I also had the privilege of working next to 
+a lot of other talented developers who
+built some of their own spectacular ML based applications 
+with Metaflow over the following years. 
+Now that I've left Netflix I look forward to continuing to use it
+and helping others get the most out of it. 
+
+In this post I'll demonstrate one of the ways I like to use it: 
+doing repeatable machine learning model selection at scale. 
+(This post does not address the ML model reproducibility crisis. 
+Repeatable here means easily re-runnable.)
+I'll compare 5 different hyperparameter settings for each of
 LightGBM and Keras regressors,
 with 5 fold cross validation and early stopping,
-trained and scored on a mock data set.
-All 50 of these instances are executed in parallel.
+for a total of 50 parallel model candidates.
+All of these instances are executed in parallel.
 The following box plots show the min and max
 and the 25th, 50th (median), and 75th percentiles
-of r-squared score.
+of r-squared score from a mock regression data set.
 
 <figure class="align-center" style="display: table;">
     <a href="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png" /></a>
@@ -144,10 +153,7 @@ The end step produces summary data and figures.
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Model selection flow.</figcaption>
 </figure>
 
-
-# Key Features and Functionality
-
-## Mocking A Data Set
+# Mocking A Data Set
 
 The mock regression data is generated using 
 [sklearn.datasets.make_regression](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_regression.html).
@@ -175,7 +181,7 @@ is entirely random.
 This is a silly construction but it allows for validation of the flow against 
 at least one categorical variable.
 
-## Specifying Contenders
+# Specifying Contenders
 
 All ML model contenders, including their hyperparameter grids, 
 are specified in 
