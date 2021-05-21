@@ -1,0 +1,24 @@
+// Publications styles
+// ---------------------------------------/
+
+// publication content styles
+
+.content-section {
+  .bibliography-item { margin-bottom: 2rem; }
+
+  .bibliography-item-year {
+	margin: 0 0 0.2em 0;
+  }
+
+  .bibliography-item-title,
+  .bibliography-item-authors,
+  .bibliography-item-publication,
+  .bibliography-item-arxiv,
+  .bibliography-item-pdf {
+	margin: 0 0 0.2em 2em;
+  }
+
+  .bibliography-item-title {
+    font-weight: bold;
+  }
+}

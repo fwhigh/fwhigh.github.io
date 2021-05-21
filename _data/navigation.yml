@@ -20,6 +20,8 @@ main:
   #   url: /blog/tags/
   # - title: "Sitemap"
   #   url: /sitemap/
+  - title: "Publications"
+    url: /publications/
 metaflow-sidebar:
   - title: "Metaflow Series"
     children:

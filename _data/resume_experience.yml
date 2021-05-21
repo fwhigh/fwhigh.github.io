@@ -6,12 +6,11 @@
   position: Senior Data Scientist
   duration: Oct, 2014 &mdash; July 2018 and July, 2019 &mdash; May, 2021
   summary: |
-    Built machine learning models to predict demand for shows on and off the service. 
+    Predicted the value of licensed and original content and supported creative decision-making using machine learning models.
     <ul class="resume-item-list">
-      <li>Built country-to-country prediction models</li>
-      <li>Built title similarity models using matrix factorization and embeddings</li>
-      <li>Built content taxonomy for buyers</li>
-      <li>Focused on machine learning infrastructure</li>
+      <li>Stack included Python, R, Bash, Hive and Presto</li>
+      <li>Used XGBoost, LightGBM, Vowpal Wabbit, Keras</li>
+      <li>Scaled expert-owned content taxonomy to all shows using ML models</li>
     </ul>
 
 - company: Joymode
