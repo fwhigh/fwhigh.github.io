@@ -51,7 +51,7 @@ might train a model and persist it using Metaflow train.py,
 then load that model on a schedule that matches that time frame from the SLA.
 
 You can start with the basic practices I talked about in my other post on
-[Metaflow Best Practices for Machine Learning]({% post_url 2021-05-26-metaflow-best-practices-for-ml %}).
+[Metaflow Best Practices for Machine Learning]({% post_url /blog/2021-05-26-metaflow-best-practices-for-ml %}).
 This is how I structured the example for this post at
 [examples/model-versioning](https://github.com/fwhigh/metaflow-helper/tree/main/examples/model-versioning),
 but with some interesting variation.

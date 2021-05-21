@@ -33,7 +33,7 @@ Let's start with the setup.
 
 Here's a rundown of my recommended setup.
 * Create or reuse a git repository.
-* Make a directory structure with (see [Metaflow Best Practices for Machine Learning]({% post_url 2021-05-26-metaflow-best-practices-for-ml %}#develop-a-separate-python-package) for more specifics on directory structures)
+* Make a directory structure with (see [Metaflow Best Practices for Machine Learning]({% post_url /blog/2021-05-26-metaflow-best-practices-for-ml %}#develop-a-separate-python-package) for more specifics on directory structures)
   * a subdirectory for Metaflow flows and local common code
   * and a pip-installable Python package.
 * Use feature branches and pull requests to make changes.
