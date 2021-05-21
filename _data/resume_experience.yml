@@ -8,26 +8,34 @@
   summary: |
     Built machine learning models to predict demand for shows on and off the service. 
     <ul class="resume-item-list">
-      <li>A project you are proud of</li>
-      <li>Another awesome project</li>
-      <li>or a team or department you worked with</li>
+      <li>Built country-to-country prediction models</li>
+      <li>Built title similarity models using matrix factorization and embeddings</li>
+      <li>Built content taxonomy for buyers</li>
+      <li>Focused on machine learning infrastructure</li>
     </ul>
 
 - company: Joymode
   position: Vice President, Data Science
   duration:  July, 2018 &mdash; July, 2019
   summary: |
-    If your stint was shorter, feel free to be brief and just call out the most meaningful points of your role. Be concise, and be meaninful. The person reading just needs enough to want to talk to you more about your experience.
+    Led machine learning, experimentation, and analytics for a Los Angeles based startup.
+    <ul class="resume-item-list">
+      <li>Built analytics, dashboarding, and machine learning platforms on AWS</li>
+      <li>Built first ML-based recommender system</li>
+      <li>Built first product demand model for buyers</li>
+      <li>Built first subscriber churn prediction model</li>
+      <li>Led pricing strategy</li>
+    </ul>
 
 - company: Sociocast Networks
   position: Data Scientist
   duration:   August, 2013  &mdash; October, 2014
-  summary: Led communication efforts across digital and traditional media channels for marketing and public relations, internal communication strategies, and coordinated support programs for the recipients of the center's services.
+  summary: Predicted ad engagement at large scale using Hadoop MapReduce in Java, R, and Python
 
 - company: ThoughtWorks
   position: Data Scientist
   duration:   February, 2013  &mdash; July, 2013
-  summary: Led communication efforts across digital and traditional media channels for marketing and public relations, internal communication strategies, and coordinated support programs for the recipients of the center's services.
+  summary: ABCDEF
 
 - company: University of Chicago
   position: Postdoctoral Research Scholar
