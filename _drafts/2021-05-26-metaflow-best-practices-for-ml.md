@@ -90,7 +90,7 @@ Your working directory in the notebook should be
 (Note: that debug snippet shows artifacts from my previous post,
 {% comment %} 
 <!-- TODO Uncomment the following after the model selection post goes live-->
-[LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-lightgbm-vs-keras-metaflow %}).)
+[LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-ml-model-selection-with-metaflow %}).)
 {% endcomment %}
 
 ## Develop a separate Python package
@@ -304,7 +304,7 @@ I did a variant of this in my
 from 
 {% comment %} 
 <!-- TODO Uncomment the following after the model selection post goes live-->
-[LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-lightgbm-vs-keras-metaflow %}).
+[LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-ml-model-selection-with-metaflow %}).
 {% endcomment %}
 Instead of using a boolean flag I point to different configuration files by string,
 some of which perform the same tasks of 

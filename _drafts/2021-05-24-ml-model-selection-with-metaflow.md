@@ -1,5 +1,5 @@
 ---
-title: "LightGBM vs Keras Model Selection At Scale Using Metaflow"
+title: "Machine Learning Model Selection with Metaflow"
 date: 2021-05-24 12:00:00 -0700
 comments: true
 author: "Will High"
@@ -54,6 +54,17 @@ built some of their own spectacular ML based applications
 with Metaflow over the following years. 
 Now that I've left Netflix I look forward to continuing to use it
 and helping others get the most out of it. 
+
+What is Metaflow? 
+It's a framework that lets you write data pipelines
+in pure Python, and it's particurly suited to scaling up machine learning solutions. 
+Pipelines are specified as multiple *steps* in a *flow*,
+and steps can consist of potentially many *tasks* executed
+in parallel in their own isolated containers in the cloud.
+Tasks are stateless and reproducible. Metaflow persists objects and data in
+a data store like S3 for easy retrieval, inspection, and further processing
+by downstream systems.
+Read more at [https://metaflow.org/](https://metaflow.org/).
 
 In this post I'll demonstrate one of the ways I like to use it: 
 doing repeatable machine learning model selection at scale. 
