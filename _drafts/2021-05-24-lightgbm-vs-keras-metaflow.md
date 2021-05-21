@@ -55,17 +55,6 @@ with Metaflow over the following years.
 Now that I've left Netflix I look forward to continuing to use it
 and helping others get the most out of it. 
 
-What is Metaflow? 
-It's a framework that lets you write data pipelines
-in pure Python, and it's particurly suited to scaling up machine learning solutions. 
-Pipelines are specified as multiple *steps* in a *flow*,
-and steps can consist of potentially many *tasks* executed
-in parallel in their own isolated containers in the cloud.
-Tasks are stateless and reproducible. Metaflow persists objects and data in
-a data store like S3 for easy retrieval, inspection, and further processing
-by downstream systems.
-Read more at [https://metaflow.org/](https://metaflow.org/).
-
 In this post I'll demonstrate one of the ways I like to use it: 
 doing repeatable machine learning model selection at scale. 
 (This post does not address the ML model reproducibility crisis. 
@@ -80,12 +69,12 @@ and the 25th, 50th (median), and 75th percentiles
 of r-squared score from a mock regression data set.
 
 <figure class="align-center" style="display: table;">
-    <a href="/assets/ml-model-selection-with-metaflow/1621302832648370/all-scores.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/1621302832648370/all-scores.png" /></a>
+    <a href="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png" /></a>
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, one category: any of the tested Keras architectures wins on r-squared score. 
     The narrow single-hidden-layer one happened to be best overall, with l1 factor 2.4e-7 and l2 factor 7.2e-6.</figcaption>
 </figure>
 <figure class="align-center" style="display: table;">
-    <a href="/assets/ml-model-selection-with-metaflow/1621303262250162/all-scores.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/1621303262250162/all-scores.png" /></a>
+    <a href="/assets/lightgbm-vs-keras-metaflow/1621303262250162/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621303262250162/all-scores.png" /></a>
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, two categories: LightGBM with depth 3 interactions and learning rate 0.03 wins on r-squared score.
     The LightGBM model with depth 1 performed the worst.</figcaption>
 </figure>
@@ -95,7 +84,7 @@ on the held out test set look like this
 for the noisy one-category data set.
 
 <figure class="align-center" style="display: table; ">
-    <a href="/assets/ml-model-selection-with-metaflow/1621302832648370/predicted-vs-true.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/1621302832648370/predicted-vs-true.png" /></a>
+    <a href="/assets/lightgbm-vs-keras-metaflow/1621302832648370/predicted-vs-true.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621302832648370/predicted-vs-true.png" /></a>
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Predicted versus true for the noisy regression, one category.</figcaption>
 </figure>
 
@@ -160,7 +149,7 @@ Finally a model on all of the data is trained.
 The end step produces summary data and figures.
 
 <figure class="align-center" style="display: table; ">
-    <a href="/assets/ml-model-selection-with-metaflow/model-selection-flow.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/model-selection-flow.png" /></a>
+    <a href="/assets/lightgbm-vs-keras-metaflow/model-selection-flow.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/model-selection-flow.png" /></a>
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Model selection flow.</figcaption>
 </figure>
 
