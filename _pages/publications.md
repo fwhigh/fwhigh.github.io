@@ -9,10 +9,10 @@ author_profile: true
 
 I actively published as an academic from 2007 to 2012. 
 
-* <a href="https://arxiv.org/a/high_f_1.html" target="_blank">arXiv</a> <i class="fas fa-fw fa-external-link-alt"></i>
-* <a href="http://bit.ly/fwhigh-pubs" target="_blank">NASA ADS</a> <i class="fas fa-fw fa-external-link-alt"></i>
-* <a href="https://inspirehep.net/authors/1053552" target="_blank">Insire HEP</a> <i class="fas fa-fw fa-external-link-alt"></i>
-* <a href="https://scholar.google.com/citations?user=jR6eVFAAAAAJ&hl=en" target="_blank">Google Scholar</a><i class="fas fa-fw fa-external-link-alt"></i>
+* {% include linkout.html href="https://arxiv.org/a/high_f_1.html" text="arXiv" %}
+* {% include linkout.html href="http://bit.ly/fwhigh-pubs" text="NASA ADS" %}
+* {% include linkout.html href="https://inspirehep.net/authors/1053552" text="Insire HEP" %}
+* {% include linkout.html href="https://scholar.google.com/citations?user=jR6eVFAAAAAJ&hl=en" text="Google Scholar" %}
 
 ## Dissertation
 
@@ -24,7 +24,7 @@ I actively published as an academic from 2007 to 2012.
   <p class="bibliography-item-authors" itemprop="authors">{{ pub.authors }}</p>
   <p class="bibliography-item-publication" itemprop="title">{{ pub.publication }}</p>
   {% if pub.link != "" %}
-	  <p class="bibliography-item-pdf"><a href="{{ pub.link }}" target="_blank">Link</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
+    <p class="bibliography-item-pdf">{% include linkout.html href=pub.link text="Link" %}</p>
   {% endif %}
 </div><!-- end of bibliography-item -->
 {% endfor %}
@@ -40,7 +40,7 @@ I actively published as an academic from 2007 to 2012.
   <p class="bibliography-item-authors" itemprop="authors">{{ pub.authors }}</p>
   <p class="bibliography-item-publication" itemprop="title">{{ pub.publication }}</p>
   {% if pub.link != "" %}
-	  <p class="bibliography-item-pdf"><a href="{{ pub.link }}" target="_blank">Link</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
+    <p class="bibliography-item-pdf">{% include linkout.html href=pub.link text="Link" %}</p>
   {% endif %}
 </div><!-- end of bibliography-item -->
 {% endfor %}
@@ -57,7 +57,8 @@ I actively published as an academic from 2007 to 2012.
   <p class="bibliography-item-publication" itemprop="title">{{ pub.publication }}</p>
   <p class="bibliography-item-arxiv"><a href="https://arxiv.org/abs//{{ pub.arxiv }}" target="_blank">ariXiv:{{ pub.arxiv }}</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
   {% if pub.download != "" %}
-	  <p class="bibliography-item-pdf"><a href="{{ site.url }}{{ site.baseurl }}/assets/publications/{{ pub.download }}" target="_blank">PDF</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
+    {% capture pdf_href %}{{ site.url }}{{ site.baseurl }}/assets/publications/{{ pub.download }}{% endcapture %}
+    <p class="bibliography-item-pdf">{% include linkout.html href=pdf_href text="PDF" %}</p>
   {% endif %}
 </div><!-- end of bibliography-item -->
 {% endfor %}
