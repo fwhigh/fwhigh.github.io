@@ -24,3 +24,5 @@ I've also occasionally served as a pro bono Data Ambassador for [DataKind](https
 I hold a PhD from Harvard 
 and a BA from Berkeley with specialties in astrophysics and cosmology, 
 and I held research positions at Caltech and the University of Chicago. 
+I've made my publications from this period available under
+[Publications]({% link _pages/publications.md %}).
