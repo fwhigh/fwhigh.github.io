@@ -31,5 +31,37 @@ feature_row1:
     btn_class: "btn--primary"
 ---
 
-{% include feature_row id="feature_row1" %}
+<!-- {% include feature_row id="feature_row1" %} -->
 
+{% assign feature_category = "Featured" %}
+
+{% assign categories_max = 0 %}
+{% for category in site.categories %}
+  {% if category[0] == feature_category %}
+    {% if category[1].size > categories_max %}
+      {% assign categories_max = category[1].size %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<div class="feature__wrapper">
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+{% for i in (1..categories_max) reversed %}
+  {% for category in site.categories %}
+    {% if category[0] == feature_category %}
+      {% if category[1].size == i %}
+        {% for post in category.last %}
+          <div class="feature__item">
+            <div class="archive__item">
+              <div class="archive__item-body">
+                {% include archive-single.html type=entries_layout %}
+                <p><a href="{{ post.url | relative_url }}" class="btn btn--primary">{{ "Read" | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+</div>

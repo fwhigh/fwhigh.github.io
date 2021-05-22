@@ -2,7 +2,6 @@
 permalink: /about/
 title: "About"
 excerpt: "About Will High"
-last_modified_at: 2021-03-15T15:10:00-07:00
 author_profile: false
 ---
 

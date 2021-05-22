@@ -35,3 +35,10 @@ metaflow-sidebar:
         # url: /blog/2021/05/30/metaflow-ml-dev-cycle/
       # - title: '<span class="text-primary">Coming soon</span>: More Best Practices'
         # url: /
+blog-sidebar:
+  - title: "Blog Entries"
+    children:
+      - title: "By Year"
+        url: /blog/
+      - title: "By Category"
+        url: /blog/categories/

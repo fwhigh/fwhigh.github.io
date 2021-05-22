@@ -7,4 +7,11 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-@import "publications"
+// Leave the above unchanged
+// Do customization below
+
+@import "publications";
+
+a { 
+	text-decoration: none !important;
+}

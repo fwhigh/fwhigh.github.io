@@ -2,22 +2,17 @@
 permalink: /publications/
 title: "Publications"
 excerpt: "Will High's Publications"
-last_modified_at: 2021-05-21T00:00:00-07:00
+toc: true
+toc_sticky: true
 author_profile: true
-classes: wide
 ---
 
-I actively published as an academic from 2007 to 2013.
+I actively published as an academic from 2007 to 2012. 
 
-## Aggregators
-
-<a href="http://bit.ly/fwhigh-arxiv" target="_blank">arXiv</a> <i class="fas fa-fw fa-external-link-alt"></i>
-
-<a href="http://bit.ly/fwhigh-pubs" target="_blank">NASA ADS</a> <i class="fas fa-fw fa-external-link-alt"></i>
-
-<a href="https://inspirehep.net/authors/1053552" target="_blank">Insire HEP</a> <i class="fas fa-fw fa-external-link-alt"></i>
-
-<a href="https://scholar.google.com/citations?user=jR6eVFAAAAAJ&hl=en" target="_blank">Google Scholar</a><i class="fas fa-fw fa-external-link-alt"> </i>
+* <a href="https://arxiv.org/a/high_f_1.html" target="_blank">arXiv</a> <i class="fas fa-fw fa-external-link-alt"></i>
+* <a href="http://bit.ly/fwhigh-pubs" target="_blank">NASA ADS</a> <i class="fas fa-fw fa-external-link-alt"></i>
+* <a href="https://inspirehep.net/authors/1053552" target="_blank">Insire HEP</a> <i class="fas fa-fw fa-external-link-alt"></i>
+* <a href="https://scholar.google.com/citations?user=jR6eVFAAAAAJ&hl=en" target="_blank">Google Scholar</a><i class="fas fa-fw fa-external-link-alt"></i>
 
 ## Dissertation
 
@@ -29,7 +24,7 @@ I actively published as an academic from 2007 to 2013.
   <p class="bibliography-item-authors" itemprop="authors">{{ pub.authors }}</p>
   <p class="bibliography-item-publication" itemprop="title">{{ pub.publication }}</p>
   {% if pub.link != "" %}
-	  <p class="bibliography-item-pdf"><a href="{{ pub.link }}">Link</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
+	  <p class="bibliography-item-pdf"><a href="{{ pub.link }}" target="_blank">Link</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
   {% endif %}
 </div><!-- end of bibliography-item -->
 {% endfor %}
@@ -45,7 +40,7 @@ I actively published as an academic from 2007 to 2013.
   <p class="bibliography-item-authors" itemprop="authors">{{ pub.authors }}</p>
   <p class="bibliography-item-publication" itemprop="title">{{ pub.publication }}</p>
   {% if pub.link != "" %}
-	  <p class="bibliography-item-pdf"><a href="{{ pub.link }}">Link</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
+	  <p class="bibliography-item-pdf"><a href="{{ pub.link }}" target="_blank">Link</a> <i class="fas fa-fw fa-external-link-alt"></i></p>
   {% endif %}
 </div><!-- end of bibliography-item -->
 {% endfor %}
