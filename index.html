@@ -36,19 +36,18 @@ feature_row1:
 {% assign feature_category = "Featured" %}
 
 <div class="feature__wrapper">
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-{% for category in site.categories %}
-  {% if category[0] == feature_category %}
-    {% for post in category.last %}
-      <div class="feature__item">
-        <div class="archive__item">
-          <div class="archive__item-body">
-            {% include archive-single.html type=entries_layout %}
-            <p><a href="{{ post.url | relative_url }}" class="btn btn--primary">{{ "Read" | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
+  {% for category in site.categories %}
+    {% if category[0] == feature_category %}
+      {% for post in category.last %}
+        <div class="feature__item">
+          <div class="archive__item">
+            <div class="archive__item-body">
+              {% include archive-single.html type=entries_layout %}
+              <p><a href="{{ post.url | relative_url }}" class="btn btn--primary">{{ "Read" | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
+            </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endfor %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
 </div>
