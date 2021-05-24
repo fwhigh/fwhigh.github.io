@@ -57,7 +57,7 @@ and helping others get the most out of it.
 
 What is Metaflow? 
 It's a framework that lets you write data pipelines
-in pure Python, and it's particurly suited to scaling up machine learning solutions. 
+in pure Python, and it's particularly suited to scaling up machine learning applications. 
 Pipelines are specified as multiple *steps* in a *flow*,
 and steps can consist of potentially many *tasks* executed
 in parallel in their own isolated containers in the cloud.
@@ -80,13 +80,13 @@ and the 25th, 50th (median), and 75th percentiles
 of r-squared score from a mock regression data set.
 
 <figure class="align-center" style="display: table;">
-    <a href="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621302832648370/all-scores.png" /></a>
-    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, one category: any of the tested Keras architectures wins on r-squared score. 
-    The narrow single-hidden-layer one happened to be best overall, with l1 factor 2.4e-7 and l2 factor 7.2e-6.</figcaption>
+    <a href="/assets/ml-model-selection-with-metaflow/1621302832648370/all-scores.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/1621302832648370/all-scores.png" /></a>
+    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, one category: any of the tested Keras architectures wins on out-of-sample r-squared score. 
+    The narrow single-hidden-layer Keras model happened to be best overall, with l1 factor 2.4e-7 and l2 factor 7.2e-6.</figcaption>
 </figure>
 <figure class="align-center" style="display: table;">
-    <a href="/assets/lightgbm-vs-keras-metaflow/1621303262250162/all-scores.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621303262250162/all-scores.png" /></a>
-    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, two categories: LightGBM with depth 3 interactions and learning rate 0.03 wins on r-squared score.
+    <a href="/assets/ml-model-selection-with-metaflow/1621303262250162/all-scores.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/1621303262250162/all-scores.png" /></a>
+    <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Noisy regression, two categories: LightGBM with depth 3 interactions and learning rate 0.03 wins on out-of-sample r-squared score.
     The LightGBM model with depth 1 performed the worst.</figcaption>
 </figure>
 
@@ -95,7 +95,7 @@ on the held out test set look like this
 for the noisy one-category data set.
 
 <figure class="align-center" style="display: table; ">
-    <a href="/assets/lightgbm-vs-keras-metaflow/1621302832648370/predicted-vs-true.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/1621302832648370/predicted-vs-true.png" /></a>
+    <a href="/assets/ml-model-selection-with-metaflow/1621302832648370/predicted-vs-true.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/1621302832648370/predicted-vs-true.png" /></a>
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Predicted versus true for the noisy regression, one category.</figcaption>
 </figure>
 
@@ -116,6 +116,9 @@ With the
 
 The code is available at
 [https://github.com/fwhigh/metaflow-helper](https://github.com/fwhigh/metaflow-helper).
+The examples in this article are reproducible from the commit tagged **v0.0.1**.
+You can also install the tagged package from PyPI with
+`pip install metaflow-helper==0.0.1`.
 Comments, issues, and pull requests are welcome.
 
 This post is *not* meant to conclude whether 
@@ -131,11 +134,12 @@ and repeat the tournament over time as well.
 # Quickstart
 
 You can run the model selection tournament immediately like this. 
-Install a convenience package called metaflow-helper.
+Install a convenience package called metaflow-helper
+at the commit tagged v0.0.1.
 
 {% include gist_embed.html data_gist_id="fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226" data_gist_file="model_selection_quickstart_install.sh" %}
 
-Then run the Metaflow tournament job. 
+Then run the Metaflow tournament job at a small scale just to test it out. 
 This one needs a few more packages, including Metaflow itself, 
 which metaflow-helper doesn't currently require.
 
@@ -144,8 +148,9 @@ which metaflow-helper doesn't currently require.
 Results are printed to the screen, 
 but they are also summarized in a local file `results/<run-id>/summary.txt`
 along with some plots. 
+There are full scale model selection configurations available in there as well. 
 
-This is the flow you are running. 
+Following figure shows the flow you are running. 
 The mock data is generated in the start step.
 The next step splits across all hyperparameter grid points
 for all contenders -- 10 total for 2 models in the case of this example.
@@ -160,16 +165,17 @@ Finally a model on all of the data is trained.
 The end step produces summary data and figures.
 
 <figure class="align-center" style="display: table; ">
-    <a href="/assets/lightgbm-vs-keras-metaflow/model-selection-flow.png"><img width="100%" src="/assets/lightgbm-vs-keras-metaflow/model-selection-flow.png" /></a>
+    <a href="/assets/ml-model-selection-with-metaflow/model-selection-flow.png"><img width="100%" src="/assets/ml-model-selection-with-metaflow/model-selection-flow.png" /></a>
     <figcaption style="display: table-caption; caption-side: bottom; font-style: italic;" width="100%">Model selection flow.</figcaption>
 </figure>
 
 # Mocking A Data Set
 
 The mock regression data is generated using 
-[sklearn.datasets.make_regression](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_regression.html).
-Keyword parameter settings are controlled entirely in
-[examples/model-selection/config.py](https://github.com/fwhigh/metaflow-helper/blob/main/examples/model-selection/config.py) 
+Scikit-learn
+[make_regression](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_regression.html).
+Keyword parameter settings are controlled entirely in configuration files like
+[randomized_config.py](https://github.com/fwhigh/metaflow-helper/blob/v0.0.1/examples/model-selection/randomized_config.py) 
 in an object called 
 `make_regression_init_kwargs`.
 If you set `n_categorical_features = 1` you'll get a single data set with
@@ -195,11 +201,11 @@ at least one categorical variable.
 # Specifying Contenders
 
 All ML model contenders, including their hyperparameter grids, 
-are specified in 
-[examples/model-selection/config.py](https://github.com/fwhigh/metaflow-helper/blob/main/examples/model-selection/config.py) 
-with the `contenders_spec` object. 
+are also specified in 
+[randomized_config.py](https://github.com/fwhigh/metaflow-helper/blob/v0.0.1/examples/model-selection/randomized_config.py) 
+using the `contenders_spec` object. 
 Implement this spec object like you would any hyperparameter grid that you would
-pass to 
+pass to Scikit-learn
 [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) 
 or 
 [RandomizedSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html),
@@ -209,7 +215,6 @@ or
 [ParameterSampler](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.ParameterSampler.html). 
 Randomized search is automaticallly used if the `'__n_iter'` key is present in the contender spec,
 otherwise the flow will fall back to grid search. 
-
 
 Here's an illustration of tuning two models.
 The LightGBM model is being tuned over 5 random `max_depth` and `learning_rate` settings.
@@ -239,11 +244,11 @@ I'm
 wrapping the model in a Scikit-learn [Pipeline](sklearn.pipeline.Pipeline)
 with step-name `'model'`.
 
-I implemented two model handlers, 
+I implemented two model wrappers, 
 a LightGBM regressor
 and a Keras regressor.
 Sources for these are in 
-[metaflow_helper/model_helpers](https://github.com/fwhigh/metaflow-helper/tree/main/metaflow_helper/model_handlers).
+[metaflow_helper/models](https://github.com/fwhigh/metaflow-helper/tree/v0.0.1/metaflow_helper/models).
 They're straightforward, and you can implement additional ones
 for any other algo. 
 
@@ -254,9 +259,10 @@ There are a number of ways to extend this idea.
 **Idea 1:** 
 It was interesting to do model selection on a continuous target variable,
 but it's possible to do the same type of optimization for a classification task using
-[sklearn.datasets.make_classification](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html)
+Scikit-learn
+[make_classification](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html)
 and
-[sklearn.datasets.make_multilabel_classification](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_multilabel_classification.html)
+[make_multilabel_classification](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_multilabel_classification.html)
 to mock data.
 
 **Idea 2:** 
@@ -281,5 +287,4 @@ but it didn't seem straightforward to implement things this way.
 I had to break some Scikit-learn patterns 
 to make things work but it wasn't too painful.
 
-I'm interested in hearing your ideas, too. 
-Are you using Metaflow? How do you use it?
+I'm interested in any other ideas you might have. Enjoy!
