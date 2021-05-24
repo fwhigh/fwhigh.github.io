@@ -11,6 +11,7 @@ excerpt: Here's a cheat sheet of awk one liners for machine learning metrics you
 toc: true
 toc_sticky: true
 author_profile: true
+classes: wide
 ---
 
 # Intro
@@ -28,20 +29,52 @@ This post is built backwards for ease of repeated reference.
 
 # Cheat Sheet
 
-## Precision
+Full gist available 
+[here](https://gist.github.com/fwhigh/7745ea6f278f31f2f4e525b7a00df273). 
 
 ```bash
+# 500k-1 random predictions
+awk -v n_lines=499999 'BEGIN {for (i=0; i<n_lines; i++) {print int(rand()>0.5),rand()}}' > label_pred
+```
 
-paste -d' ' p_out labels | awk -v threshold=0.5 '{$2 >= $threshold && $1 >= 0.5 ? tp++ : fp++} END {print tp/NR}' -
+First 10 lines: 
+
+```
+1 0.394383
+1 0.79844
+1 0.197551
+0 0.76823
+0 0.55397
+0 0.628871
+0 0.513401
+1 0.916195
+1 0.717297
+0 0.606969
 ```
 
 ## Accuracy
 
+{% include gist_embed.html data_gist_id="fwhigh/7745ea6f278f31f2f4e525b7a00df273" data_gist_hide_footer="true" data_gist_file="ml_one_liners.sh" data_gist_line="1-2" %}
+
+## Precision
+
+{% include gist_embed.html data_gist_id="fwhigh/7745ea6f278f31f2f4e525b7a00df273" data_gist_hide_footer="true" data_gist_file="ml_one_liners.sh" data_gist_line="4-5" %}
+
 ## Recall
 
-## F1
+{% include gist_embed.html data_gist_id="fwhigh/7745ea6f278f31f2f4e525b7a00df273" data_gist_hide_footer="true" data_gist_file="ml_one_liners.sh" data_gist_line="7-8" %}
 
-## (Root) mean square error
+## Mean Squared Error
+
+{% include gist_embed.html data_gist_id="fwhigh/7745ea6f278f31f2f4e525b7a00df273" data_gist_hide_footer="true" data_gist_file="ml_one_liners.sh" data_gist_line="10-11" %}
+
+## AUC with sort
+
+{% include gist_embed.html data_gist_id="fwhigh/7745ea6f278f31f2f4e525b7a00df273" data_gist_hide_footer="true" data_gist_file="ml_one_liners.sh" data_gist_line="13-14" %}
+
+## AUC without sort
+
+{% include gist_embed.html data_gist_id="fwhigh/7745ea6f278f31f2f4e525b7a00df273" data_gist_hide_footer="true" data_gist_file="ml_one_liners.sh" data_gist_line="16-17" %}
 
 ## Cross entropy
 
@@ -176,14 +209,14 @@ total feature number = 59936409
 
 ```bash
 # predict
-vw -t --cache_file cache_test -i r_temp -p p_out rcv1.test.vw.gz
+vw -t --cache_file cache_test -i r_temp -p predictions rcv1.test.vw.gz
 ```
 
 Output:
 
 ```
 only testing
-predictions = p_out
+predictions = predictions
 Num weight bits = 18
 learning rate = 0.5
 initial_t = 0
@@ -222,7 +255,7 @@ total feature number = 1775682
 
 ```bash
 gzcat rcv1.test.vw.gz | cut -d ' ' -f 1 | sed -e 's/^-1/0/' > labels
-perf -files labels p_out -t 0.5
+perf -files labels predictions -t 0.5
 ```
 
 Output:
