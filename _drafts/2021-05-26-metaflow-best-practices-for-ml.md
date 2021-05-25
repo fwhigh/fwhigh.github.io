@@ -12,15 +12,13 @@ categories:
   - Engineering
   - Featured
   - Metaflow
-excerpt: Here are some recommended best practices for using Metaflow in machine learning projects.
+excerpt: Some of these are specific to Metaflow, some are more general to Python and ML.
 toc: true
 toc_sticky: true
 author_profile: false
 sidebar:
   nav: metaflow-sidebar
 ---
-
-# Overview
 
 I wanted to share with you 
 some recommended best practices
@@ -30,10 +28,9 @@ The goals are
 a short development loop;
 reusable, maintainable, and reliable code;
 and just an overall fun and rewarding developer experience. 
+This list is probably not complete but I can add more later.
 
-# Best practices for ML
-
-## Minimal directory structure
+# Minimal directory structure
 
 I'll start with a suggested minimal directory structure.
 This example has a training flow and a prediction flow,
@@ -63,7 +60,7 @@ and
 
 Note `import common`. That brings me to...
 
-## Put common code into a separate script
+# Put common code into a separate script
 
 In the minimal code structure and flow example I've got a script called
 common.py. That contains reusable functions, classes,
@@ -72,12 +69,12 @@ Pulling your code into a separate script makes it more easily
 reusable and testable 
 and shortens your Metaflow steps and overall flow spec. 
 
-## Git-ignore .metaflow
+# Git-ignore .metaflow
 
 Don't forget to add `.metaflow` to your .gitignore 
 because those directories contain the local data artifacts.
 
-## Debug in a Jupyter notebook
+# Debug in a Jupyter notebook
 
 You can debug common code and access Metaflow data artifacts
 in Jupyter notebooks.
@@ -94,7 +91,7 @@ Your working directory in the notebook should be
 (Note: that debug snippet shows artifacts from my 
 [previous Metaflow post]({% post_url 2021-05-24-ml-model-selection-with-metaflow %}).)
 
-## Develop a separate Python package
+# Develop a separate Python package
 
 When it makes sense to (and not earlier) 
 I try to separate out the 
@@ -168,7 +165,7 @@ and your external package code all in the same notebook.*
 
 And speaking of pinning...
 
-## Pin your packages
+# Pin your packages
 
 If you plan on running your flows on a cron schedule or against
 triggers over long periods of time,
@@ -198,7 +195,7 @@ will let me do this.
 
 Now that I've said all this stuff about pip...
 
-## Migrate to conda
+# Migrate to conda
 
 The pip-install pattern is useful for shortening 
 the development cycle, but the 
@@ -211,7 +208,7 @@ My guess is one of
 might work.
 I'll give these a try as soon as I have a need to.
 
-## Keep flows and flow steps short
+# Keep flows and flow steps short
 
 If you pull common code into local Python scripts 
 or into a separate package,
@@ -243,7 +240,7 @@ completed successfully and the runtime failure is isolated to a
 small step.
 Small steps make the whole debugging and maintenance experience more enjoyable. 
 
-## Fail fast in your start step
+# Fail fast in your start step
 
 Your start step is an opportunity to fail fast. 
 This means things like:
@@ -256,7 +253,7 @@ let the flow error out and report back to you.
 It's far better to fail in the start step if you can
 rather than failing toward the end of a potentially very long running flow.
 
-## Implement a test mode
+# Implement a test mode
 
 Implement a test mode that will run your flow as-is
 but on as small a data set as possible and with hyperparameter settings
@@ -284,14 +281,14 @@ python train.py --test_mode 1
 ```
 
 I did a variant of this in my 
-[model selection example](https://github.com/fwhigh/metaflow-helper/tree/main/examples/model-selection)
+model selection example
 from 
-[Machine Learning Model Selection with Metaflow]({% post_url 2021-05-24-ml-model-selection-with-metaflow %}).
+[my previous Metaflow post]({% post_url 2021-05-24-ml-model-selection-with-metaflow %}).
 Instead of using a boolean flag I point to different configuration files by string,
 some of which perform the same tasks of 
 subsetting the data down and shortening the model training times dramatically.
 
-## Run flows in test mode in a CI/CD pipeline
+# Run flows in test mode in a CI/CD pipeline
 
 If you've got a nice and short test mode working you can run it as part of
 continuous integration/continuous delivery & deployment. 
@@ -300,7 +297,7 @@ You'll see working examples of this in
 I've got separate jobs and badges set up for unit testing and for running
 the Metaflow examples in test mode.
 
-## Use an IDE 
+# Use an IDE 
 
 I prefer PyCharm. It plays nice with Metaflow.
 Debugging seems to work fine, but it can be a bit tricky
