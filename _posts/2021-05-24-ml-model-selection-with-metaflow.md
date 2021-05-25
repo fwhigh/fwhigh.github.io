@@ -5,6 +5,8 @@ comments: true
 author: "Will High"
 header:
   overlay_color: "#000"
+  overlay_filter: "0.5"
+  overlay_image: /assets/images/chris-ried-ieic5Tq8YMk-unsplash.jpg
 categories: 
   - Machine Learning
   - Engineering

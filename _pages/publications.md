@@ -55,6 +55,10 @@ I actively published as an academic from 2007 to 2012.
   <p class="bibliography-item-title" itemprop="title">{{ pub.title }}</p>
   <p class="bibliography-item-authors" itemprop="authors">{{ pub.authors }}</p>
   <p class="bibliography-item-publication" itemprop="title">{{ pub.publication }}</p>
+  {% if pub.nasaads != "" %}
+    {% capture nasaads_href %}https://ui.adsabs.harvard.edu/abs/{{ pub.nasaads }}/abstract{% endcapture %}
+    <p class="bibliography-item-pdf">{% include linkout.html href=nasaads_href text=pub.nasaads %}</p>
+  {% endif %}
   {% capture arxiv_href %}https://arxiv.org/abs//{{ pub.arxiv }}{% endcapture %}
   {% capture arxiv_text %}ariXiv:{{ pub.arxiv }}{% endcapture %}
   <p class="bibliography-item-pdf">{% include linkout.html href=arxiv_href text=arxiv_text %}</p>

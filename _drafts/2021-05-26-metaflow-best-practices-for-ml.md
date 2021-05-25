@@ -5,12 +5,14 @@ comments: true
 author: "Will High"
 header:
   overlay_color: "#000"
+  overlay_filter: "0.5"
+  overlay_image: /assets/images/chris-ried-ieic5Tq8YMk-unsplash.jpg
 categories: 
   - Machine Learning
   - Engineering
   - Featured
   - Metaflow
-excerpt: I've compiled a list of best practices for using Metaflow for machine learning from my years of using it at Netflix.
+excerpt: Here are some recommended best practices for using Metaflow in machine learning projects.
 toc: true
 toc_sticky: true
 author_profile: false
@@ -20,9 +22,11 @@ sidebar:
 
 # Overview
 
-Here's a list of practices and patterns 
-tested over roughly four or so years of experience with Metaflow
-that result in 
+I wanted to share with you 
+some recommended best practices
+that I battle tested over about four or so years
+working with Metaflow at Netflix.
+The goals are 
 a short development loop;
 reusable, maintainable, and reliable code;
 and just an overall fun and rewarding developer experience. 
@@ -57,7 +61,7 @@ and
 
 {% gist c6f9c88cf94cedf2e96d6900ac0f1226 train.py %}
 
-Note `import common`.
+Note `import common`. That brings me to...
 
 ## Put common code into a separate script
 
@@ -73,7 +77,7 @@ and shortens your Metaflow steps and overall flow spec.
 Don't forget to add `.metaflow` to your .gitignore 
 because those directories contain the local data artifacts.
 
-## Debug in Jupyter a notebook
+## Debug in a Jupyter notebook
 
 You can debug common code and access Metaflow data artifacts
 in Jupyter notebooks.
@@ -87,19 +91,19 @@ without having to re-import common or otherwise run a bunch of other cells.
 Your working directory in the notebook should be 
 `<your-repo>/flows/` in this case.
 
-(Note: that debug snippet shows artifacts from my previous post,
-{% comment %} 
-<!-- TODO Uncomment the following after the model selection post goes live-->
-[LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-ml-model-selection-with-metaflow %}).)
-{% endcomment %}
+(Note: that debug snippet shows artifacts from my 
+[previous Metaflow post]({% post_url 2021-05-24-ml-model-selection-with-metaflow %}).)
 
 ## Develop a separate Python package
 
 When it makes sense to (and not earlier) 
-I try to separate out my 
+I try to separate out the 
 more broadly reusable code into a separate, pip-installable Python package.
+That's *in addition to* using local common.py scripts.
 You can put the code in the same repo, or break it out into another one.
 Here's a minimal example of putting it in the same repo.
+You'll see a full working example of this at
+[metaflow-helper](https://github.com/fwhigh/metaflow-helper).
 
 ```
 <your-repo>
@@ -116,8 +120,6 @@ Here's a minimal example of putting it in the same repo.
 ```
 
 Adding the setup.py makes `your_package` pip installable.
-I won't wade into suggesting what to put into setup.py, 
-many others have already covered that.
 During development I'll 
 fire up a Python venv with `python -m venv venv && . venv/bin/activate`
 and then install the package in editable mode
@@ -194,6 +196,8 @@ The `install_dependencies` function pattern I mentioned above
 in <a href="#develop-a-separate-python-package">Develop a separate Python package</a>
 will let me do this.
 
+Now that I've said all this stuff about pip...
+
 ## Migrate to conda
 
 The pip-install pattern is useful for shortening 
@@ -202,15 +206,15 @@ the development cycle, but the
 to maximize reproducibility.
 I don't have a good recommendation at this time on how to adopt the conda pattern
 while still keeping the development loop short. 
-Would 
-[pip-installing inside conda-decorated steps or even conda-installing from git](https://stackoverflow.com/questions/19042389/conda-installing-upgrading-directly-from-github),
-be reasonable? 
-I'll try these out and report back.
+My guess is one of
+[pip-installing inside conda-decorated steps or conda-installing from git](https://stackoverflow.com/questions/19042389/conda-installing-upgrading-directly-from-github),
+might work.
+I'll give these a try as soon as I have a need to.
 
 ## Keep flows and flow steps short
 
-If you pull common code into adjacent Python scripts 
-or into a separate package as suggested above,
+If you pull common code into local Python scripts 
+or into a separate package,
 you'll be in a good position to make your flow spec
 and each of its steps as short as possible.
 
@@ -242,35 +246,15 @@ Small steps make the whole debugging and maintenance experience more enjoyable.
 ## Fail fast in your start step
 
 Your start step is an opportunity to fail fast. 
-This means things like
-* try to ping your external services, 
-* load the pointers for you Metaflow artifact dependencies, and
-* validate configuration and variables. 
+This means things like:
+* Try to ping your external services.
+* Load the pointers for you Metaflow artifact dependencies.
+* Validate configuration and variables. 
+
 If any of your canary procedures fail,
 let the flow error out and report back to you.
 It's far better to fail in the start step if you can
 rather than failing toward the end of a potentially very long running flow.
-
-## Use an IDE 
-
-I prefer PyCharm. It plays nice with Metaflow.
-Debugging seems to work fine, but it can be a bit tricky
-to debug parallel tasks in foreach steps. 
-Using test-mode 
-(<a href="#implement-a-test-mode">Implement a test mode</a>)
-and eliminating parallel tasks helps. 
-Make sure to reuse your virtual environment interpreter if you set one up already.
-I've also set PyCharm up for Metaflow development against a remote server --
-that works pretty well, though there are a lot of configuration options to set.
-
-VS Code works as well. It's faster but has reduced functionality.
-I especially miss refactoring and fully-featured inspection when I
-use VS Code. 
-There's a time and a place for both and as always it boils down to personal preference.
-
-I haven't tested other IDEs like Spyder. 
-I'd like to hear if others have and what
-the good and the bad are about each one.
 
 ## Implement a test mode
 
@@ -302,10 +286,7 @@ python train.py --test_mode 1
 I did a variant of this in my 
 [model selection example](https://github.com/fwhigh/metaflow-helper/tree/main/examples/model-selection)
 from 
-{% comment %} 
-<!-- TODO Uncomment the following after the model selection post goes live-->
-[LightGBM vs Keras Model Selection At Scale Using Metaflow]({% post_url 2010-07-21-ml-model-selection-with-metaflow %}).
-{% endcomment %}
+[Machine Learning Model Selection with Metaflow]({% post_url 2021-05-24-ml-model-selection-with-metaflow %}).
 Instead of using a boolean flag I point to different configuration files by string,
 some of which perform the same tasks of 
 subsetting the data down and shortening the model training times dramatically.
@@ -319,6 +300,27 @@ You'll see working examples of this in
 I've got separate jobs and badges set up for unit testing and for running
 the Metaflow examples in test mode.
 
+## Use an IDE 
+
+I prefer PyCharm. It plays nice with Metaflow.
+Debugging seems to work fine, but it can be a bit tricky
+to debug parallel tasks in foreach steps. 
+Using test-mode 
+(see <a href="#implement-a-test-mode">Implement a test mode</a>)
+and eliminating parallel tasks helps. 
+Make sure to reuse your virtual environment interpreter if you set one up already.
+I've also set PyCharm up for Metaflow development against a remote server --
+that works pretty well, though there are a lot of configuration options to set.
+
+VS Code works as well. It's faster but has reduced functionality.
+I especially miss refactoring and fully-featured inspection when I
+use VS Code. 
+There's a time and a place for both and as always it boils down to personal preference.
+
+I haven't tested other IDEs like Spyder. 
+I'd like to hear if others have and what
+the good and the bad are about each one.
+
 # What did I miss?
 
 I didn't talk about more advanced practices I like, 
@@ -326,6 +328,6 @@ such as
 [Metaflow run tagging](https://docs.metaflow.org/metaflow/tagging#tagging)
 and setting up isolated test and development environments
 that operate without affecting the production environment. 
-I'll cover those in another post on more advanced best practices.
+I'll cover those future posts.
 
 I'd like to hear from you on what I may have missed or how you do things differently!
