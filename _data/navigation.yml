@@ -27,8 +27,8 @@ metaflow-sidebar:
     children:
       - title: "Model Selection"
         url: /blog/2021/05/24/ml-model-selection-with-metaflow/
-      - title: "Coming soon: Best Practices"
-        # url: /blog/2021/05/26/metaflow-best-practices-for-ml/
+      - title: "Best Practices"
+        url: /blog/2021/05/25/metaflow-best-practices-for-ml/
       - title: "Coming soon: Versioning Models"
         # url: /blog/2021/05/28/versioning-ml-models-with-metaflow-tags/
       - title: "Coming soon: Development Cycle"

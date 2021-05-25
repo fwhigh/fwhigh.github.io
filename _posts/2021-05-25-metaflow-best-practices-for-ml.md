@@ -1,6 +1,6 @@
 ---
 title: "Metaflow Best Practices for Machine Learning"
-date: 2021-05-26 12:00:00 -0700
+date: 2021-05-25 12:00:00 -0700
 comments: true
 author: "Will High"
 header:
