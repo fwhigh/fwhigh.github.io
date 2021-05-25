@@ -243,7 +243,8 @@ with a small number of required keyword arguments.
 Anything prepended with `'__init_kwargs__model'` gets passed to the model initializers
 and `'__fit_kwargs__model'` keys get passed to the fitters.
 I'm 
-wrapping the model in a Scikit-learn [Pipeline](sklearn.pipeline.Pipeline)
+wrapping the model in a Scikit-learn 
+[Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
 with step-name `'model'`.
 
 I implemented two model wrappers, 
