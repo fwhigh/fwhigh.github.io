@@ -22,7 +22,7 @@ sidebar:
 
 # Overview
 
-This post addresses feature Metaflow job debugging and feature development.
+This post addresses Metaflow job debugging and feature development.
 My aim is to make the entire cycle as short, painless, and accurate as possible. 
 
 Let's start with the setup.
