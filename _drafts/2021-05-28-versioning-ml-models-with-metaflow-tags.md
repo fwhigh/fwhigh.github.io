@@ -5,12 +5,14 @@ comments: true
 author: "Will High"
 header:
   overlay_color: "#000"
+  overlay_filter: "0.5"
+  overlay_image: /assets/images/chris-ried-ieic5Tq8YMk-unsplash.jpg
 categories: 
   - Machine Learning
   - Engineering
   - Featured
   - Metaflow
-excerpt: Metaflow tags give you a remarkably simple and powerful way to version ML models.
+excerpt: Metaflow tags provide a remarkably simple and powerful way to version ML models.
 toc: true
 toc_sticky: true
 author_profile: false
@@ -20,7 +22,7 @@ sidebar:
 
 # Intro
 
-Metaflow tags give you a remarkably simple and powerful way to version ML models.
+Metaflow tags provide a remarkably simple and powerful way to version ML models.
 I like to think of Metaflow run tags for data 
 almost the way I think about git commit tags for code (key word [almost](#gotcha)).
 You can tag any run for any purpose -- it's just a string you apply to a run,
@@ -51,7 +53,7 @@ might train a model and persist it using Metaflow train.py,
 then load that model on a schedule that matches that time frame from the SLA.
 
 You can start with the basic practices I talked about in my other post on
-[Metaflow Best Practices for Machine Learning]({% post_url 2021-05-26-metaflow-best-practices-for-ml %}).
+[Metaflow Best Practices for Machine Learning]({% post_url 2021-05-25-metaflow-best-practices-for-ml %}).
 This is how I structured the example for this post at
 [examples/model-versioning](https://github.com/fwhigh/metaflow-helper/tree/main/examples/model-versioning),
 but with some interesting variation.

@@ -29,12 +29,10 @@ metaflow-sidebar:
         url: /blog/2021/05/24/ml-model-selection-with-metaflow/
       - title: "Best Practices"
         url: /blog/2021/05/25/metaflow-best-practices-for-ml/
+      - title: "Debugging"
+        url: /blog/2021/06/02/metaflow-ml-debugging/
       - title: "Coming soon: Versioning Models"
         # url: /blog/2021/05/28/versioning-ml-models-with-metaflow-tags/
-      - title: "Coming soon: Development Cycle"
-        # url: /blog/2021/05/30/metaflow-ml-dev-cycle/
-      # - title: '<span class="text-primary">Coming soon</span>: More Best Practices'
-        # url: /
 blog-sidebar:
   - title: "Blog Entries"
     children:

@@ -1,16 +1,18 @@
 ---
-title: "Tips for a Short and Enjoyable Machine Learning Development Cycle Using Metaflow"
-date: 2021-05-28 12:00:00 -0700
+title: "Debugging Metaflow Jobs"
+date: 2021-06-02 12:00:00 -0700
 comments: true
 author: "Will High"
 header:
   overlay_color: "#000"
+  overlay_filter: "0.5"
+  overlay_image: /assets/images/chris-ried-ieic5Tq8YMk-unsplash.jpg
 categories: 
   - Machine Learning
   - Engineering
   - Featured
   - Metaflow
-excerpt: The combination of an IDE, a Jupyter notebook, and some best practices can radically shorten the development and debugging cycle when building machine learning models on Metaflow.
+excerpt: The combination of an IDE, a Jupyter notebook, and some best practices can radically shorten the Metaflow development and debugging cycle.
 toc: true
 toc_sticky: true
 author_profile: false
@@ -20,20 +22,32 @@ sidebar:
 
 # Overview
 
-This post addresses feature development and debugging of Metaflow jobs.
-I aim to make the entire cycle as short, painless, and accurate as possible. 
-Situations where the need to debug or develop a new feature might be:
-1. my Metaflow run failed and I need to figure out why and fix it
-1. I want to make a Metaflow based model better by adding new features or improving the model
-1. I simply want to inspect artifacts of successful Metaflow runs to study them
+This post addresses feature Metaflow job debugging and feature development.
+My aim is to make the entire cycle as short, painless, and accurate as possible. 
 
 Let's start with the setup.
 
 # Setup
 
-Here's a rundown of my recommended setup.
+The basic setup involves opening up a Python IDE and a Jupyter notebook.
+The IDE is for editing the Python utility package.
+Changes made to your Python utility package can be immediately used in 
+the Jupyter notebook at the cell level without 
+rerunning import statements 
+thanks to 
+[autoreload magic](https://ipython.org/ipython-doc/3/config/extensions/autoreload.html).
+The Jupyter notebook can also access Metaflow artifacts from previous runs.
+Putting it together, you can edit code in your IDE and
+immediately test it in your notebook at the cell level.
+
+Here's a picture.
+
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vQ0MFP42TOMeomoqIkNkD_v1B8VBAMoz9aRHetNwuhZvcKL5gw92s8x4Fx6BKjmQdA4cYtWpCfetWER/pub?w=960&amp;h=720">
+
+Here are the components in a bit more detail. 
+
 * Create or reuse a git repository.
-* Make a directory structure with (see [Metaflow Best Practices for Machine Learning]({% post_url /blog/2021-05-26-metaflow-best-practices-for-ml %}#develop-a-separate-python-package) for more specifics on directory structures)
+* Make a directory structure with (see [Metaflow Best Practices for Machine Learning]({% post_url /blog/2021-05-25-metaflow-best-practices-for-ml %}#develop-a-separate-python-package) for more specifics on directory structures)
   * a subdirectory for Metaflow flows and local common code
   * and a pip-installable Python package.
 * Use feature branches and pull requests to make changes.
@@ -45,7 +59,9 @@ Here's a rundown of my recommended setup.
 I use this setup when developing examples in
 [https://github.com/fwhigh/metaflow-helper](https://github.com/fwhigh/metaflow-helper).
 I'll be referring to those components quite a bit. 
-The local Python package there is called metaflow-helper and is used by doing, for example,
+Examples from this article are reproducible from 
+the metaflow-helper repo commit tagged **v0.0.1**
+The local Python package is used by doing, for example,
 `from metaflow_helper.utils import install_dependencies` at the top of flows.
 The flows live in multiple subdiretories of `examples/`, like `examples/model-selection/`.
 
@@ -57,9 +73,13 @@ I do most of my prototyping in Jupyter and then slowly begin
 to copy-paste working functions and classes into 
 Metaflow steps (train.py, predict.py in examples/model-selection/),
 my local common Python script (common.py in examples/model-selection/),
-and into my local Python package (metaflow-helper at the top level).
+and into my local Python package (metaflow_helper at the top level).
 
 The basic structure of the notebook looks like this.
+Look out for the autoreload magic command,
+Metaflow artifact accessors,
+the metaflow-helper Python package import,
+and the common.py utility import that is local to the example script.
 {% gist c6f9c88cf94cedf2e96d6900ac0f1226 debug.ipynb %}
 
 # Accessing Metaflow Artifacts
