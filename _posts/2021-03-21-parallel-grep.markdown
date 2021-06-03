@@ -45,7 +45,7 @@ Manually prepend the filename since grep can't do it in this case.
 # for-loop
 for filename in `find . -type f`
 do 
-  parallel --pipepart --block 10M -a $filename -k "grep <grep-args> | awk '{print \"$filename:\",\$0}'"
+  parallel --pipepart --block 10M -a $filename -k "grep <grep-args> | awk -v OFS=: '{print \"$filename\",\$0}'"
 done
 
 # using xargs
