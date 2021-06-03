@@ -34,7 +34,7 @@ Run grep on multiple files in parallel,
 in this case all files in a directory and its subdirectories.
 
 ```bash
-find . -type f | xargs -P 4 grep <grep-args>
+find . -type f | xargs -n 1 -P 4 grep <grep-args>
 ```
 
 Run grep in parallel blocks on multiple files in serial.
@@ -56,7 +56,7 @@ Take care to prepend the filename since grep can't do it in this case.
 Warning, this may be an inefficient use of multithreading.
 
 ```bash
-find . -type f | xargs -P 4 -I filename parallel --pipepart --block 10M -a filename -k "grep <grep-args> | awk '{print \"filename:\",\$0}'"
+find . -type f | xargs -n 1 -P 4 -I filename parallel --pipepart --block 10M -a filename -k "grep <grep-args> | awk '{print \"filename:\",\$0}'"
 ```
 
 # Parallel grep on one file
