@@ -25,13 +25,13 @@ Dockerhub directly within Elastic Beanstalk.
 EB timed out. 
 My solution, which appears to be pretty stable,
 is to rebuild the rocker image locally,
-push it to AWS's own Docker iagem repository called ECR,
+push it to AWS's own Docker image repository called ECR,
 and ask EB to pull that instead.
 The idea is the in-region data transfer across AWS services 
 should generally be faster.
 
 You can also automate the rocker image build with AWS CI/CD services,
-which I have done succesfully in the past using CodePipelines.
+which I have done successfully in the past using CodePipelines.
 But this post is just a "Hello, World!" and I'll leave that part to you.
 
 # Glossary
@@ -52,9 +52,9 @@ But this post is just a "Hello, World!" and I'll leave that part to you.
 
 1. `mkdir new-shiny-app-repo && cd new-shiny-app-repo`
 1. `mkdir apps` and then put a ["Hello, World!" Shiny app](https://shiny.rstudio.com/gallery/) in there
-1. Create Dockerfile.base that just pulls `FROM rocker/shiny` on [Dockerhub](https://hub.docker.com/r/rocker/shiny) (or rocker/shiny-verse to also make the tidyverse available) and installs any additional R packages your apps need
+1. Create Dockerfile.base that just pulls `FROM rocker/shiny` on [Docker Hub](https://hub.docker.com/r/rocker/shiny) (or rocker/shiny-verse to also make the tidyverse available) and installs any additional R packages your apps need
 1. Create an [ECR repo](https://aws.amazon.com/ecr/) called `rshiny-base` on ECR
-1. Build the `rshiny-base` image locally from Dockerfile.base then and push it to ECR
+1. Build the `rshiny-base` image locally from Dockerfile.base and push it to ECR
 1. Create the `Dockerfile` specified below
 1. On a Mac: install the EB CLI with `brew install awsebcli`
 1. Git-commit your changes
@@ -122,7 +122,7 @@ docker build -t rshiny-base -f Dockerfile.base .
 ```
 
 Then push the image to ECR.
-Follow the instructions on ECR web site to on how to authenticate and push, 
+Follow the instructions on ECR web site on how to authenticate and push, 
 but here's what it looked like
 at the time of writing.
 You're logging into AWS, 
