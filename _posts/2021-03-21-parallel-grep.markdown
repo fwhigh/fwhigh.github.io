@@ -1,6 +1,6 @@
 ---
 title: "Parallel Grep and Awk"
-date: 2021-03-21 12:00:00 -0700
+date: 2021-06-03 12:00:00 -0700
 comments: true
 author: "Will High"
 categories: 
