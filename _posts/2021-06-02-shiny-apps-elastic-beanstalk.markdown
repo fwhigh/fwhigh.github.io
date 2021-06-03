@@ -1,6 +1,6 @@
 ---
-title: "Shiny With Custom Apps on AWS Elastic Beanstalk"
-date: 2021-06-02 00:00:00 -0700
+title: "Deploy Custom Shiny Apps to AWS Elastic Beanstalk"
+date: 2021-06-02 13:00:00 -0700
 comments: true
 categories: 
   - Engineering
@@ -200,7 +200,7 @@ The EB CLI zips your latest git commit on your configured default branch.
 **It does not zip your latest changes if you have not git committed them.**
 Can't tell you how many times I've forgotten to commit.
 
-## Push It to Elastic Beanstalk
+## Push It to Elastic Beanstalk for the First Time
 
 Here's what I did to create an application called `shiny`,
 from the root directory of the git repository.
@@ -215,6 +215,16 @@ Elastic Beanstalk
 to find your (obscure) URL.
 You should see your index and you can visit the 
 `http://<url>//example-app/` path from there.
+
+## Make Changes and Push Again
+
+Make your changes, git-commit, then
+
+```bash
+eb deploy
+```
+
+So easy.
 
 # Next Steps
 
