@@ -4,6 +4,7 @@ date: 2021-06-02 13:00:00 -0700
 comments: true
 categories: 
   - Engineering
+  - Featured
 excerpt: How I tricked AWS into serving R Shiny with my local custom applications using rocker and Elastic Beanstalk.
 toc: true
 toc_sticky: true
