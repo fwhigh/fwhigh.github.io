@@ -7,26 +7,58 @@ categories:
   - Engineering
   - Featured
 excerpt: I get a nearly 6x speedup over standard grep by using GNU parallel.
+classes: wide
 ---
 
 {% include toc %}
 
 # tl;dr 
 
-I get a 6x speedup on a vanilla grep task by using 
+<!-- 
+2990406 appears at the top of kddb
+13653924 appears in both kddb and kddb.t 
+-->
+
+Get 
 [GNU parallel](https://www.gnu.org/software/parallel/)
-(`brew install parallel`). 
-I get 4x speedup on an awk task computing feature cardinality for a machine learning problem.
+(e.g. `brew install parallel`, `apt-get install parallel`, etc.).
 
-# Overview
+Run grep in parallel blocks on a single file.
 
-This post is about speeding up grep and awk on a single machine. 
-It's a modified repost of a Wordpress article I wrote a few years ago. 
-I thought it was cool enough to bring over to my new blog home, 
-and in doing so I'm seeing the 3x gain I originally got on the grep task go up to 6x. 
-Awesome. 
+```bash
+parallel --pipepart --block 10M -a <filename> -k grep <grep-args>
+```
 
-# Parallel grep
+Run grep on multiple files in parallel, 
+in this case all files in a directory and its subdirectories.
+
+```bash
+find . -type f | xargs -P 4 grep <grep-args>
+```
+
+Run grep in parallel blocks on multiple files in serial.
+Take care to prepend the filename since grep can't do it in this case.
+
+```bash
+# for-loop
+for filename in `find . -type f`
+do 
+  parallel --pipepart --block 10M -a $filename -k "grep <grep-args> | awk '{print \"$filename:\",\$0}'"
+done
+
+# using xargs
+find . -type f | xargs -I filename parallel --pipepart --block 10M -a filename -k "grep <grep-args> | awk '{print \"filename:\",\$0}'"
+```
+
+Run grep in parallel blocks on multiple files in parallel.
+Take care to prepend the filename since grep can't do it in this case.
+Warning, this may be an inefficient use of multithreading.
+
+```bash
+find . -type f | xargs -P 4 -I filename parallel --pipepart --block 10M -a filename -k "grep <grep-args> | awk '{print \"filename:\",\$0}'"
+```
+
+# Parallel grep on one file
 
 Say I want to know how many times feature "15577606" appears in the KDD CUP 2010 
 [kddb LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html)
@@ -51,7 +83,7 @@ time \
   > /dev/null
 ```
 
-# Parallel feature cardinality with awk
+# Parallel feature cardinality with awk on one file
 
 Now I'll use this to do something useful: count the occurrence of each of the 
 $O(10^7)$ features in the training file. 
