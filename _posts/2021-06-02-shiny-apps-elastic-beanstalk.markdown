@@ -46,7 +46,7 @@ But this post is just a "Hello, World!" and I'll leave that part to you.
 
 * [Docker Desktop](https://www.docker.com/)
 * An [AWS](https://aws.amazon.com/) account
-* The [AWS CLI](https://aws.amazon.com/cli/)] (`brew install awscli`)
+* The [AWS CLI](https://aws.amazon.com/cli/) (`brew install awscli`)
 * The [AWS Elastic Beanstalk CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) (`brew install awsebcli`)
 
 # Quickstart
