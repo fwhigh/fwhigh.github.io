@@ -31,5 +31,7 @@ I've made my publications from this period available under
 
 ### Credits
 
-* Los Angeles splash image on home page: [Izayah Ramos via Unsplash](https://unsplash.com/photos/cR05i3WgRlQ)
-* Python splash image: [Chris Ried via Unsplash](https://unsplash.com/photos/ieic5Tq8YMk)
+* Site built on [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/)
+* Splash images
+  * Home page: [Izayah Ramos via Unsplash](https://unsplash.com/photos/cR05i3WgRlQ)
+  * Python: [Chris Ried via Unsplash](https://unsplash.com/photos/ieic5Tq8YMk)
