@@ -12,8 +12,9 @@ author_profile: false
 I'm a machine learning data scientist
 passionate about building new ML-backed systems and applications
 that delight their users. 
-My primary interest is 
-[MLOps](https://en.wikipedia.org/wiki/MLOps). 
+My primary interests are 
+[MLOps](https://en.wikipedia.org/wiki/MLOps)
+and scientific [devops](https://en.wikipedia.org/wiki/DevOps) in general. 
 I spent a decade studying 
 [dark energy and dark matter](https://science.nasa.gov/astrophysics/focus-areas/what-is-dark-energy)
 as an academic researcher,
