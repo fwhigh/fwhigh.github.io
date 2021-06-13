@@ -1,6 +1,7 @@
 ---
 title: "Deploy Custom Shiny Apps to AWS Elastic Beanstalk"
 date: 2021-06-02 13:00:00 -0700
+last_modified_at: 2021-06-13 12:00:00 -0700
 comments: true
 categories: 
   - Engineering
@@ -9,6 +10,27 @@ excerpt: How I tricked AWS into serving R Shiny with my local custom application
 toc: true
 toc_sticky: true
 ---
+
+# Update for rocker-versioned2 (R 4)
+
+Same basic setup except with two small changes:
+* R dependency installation can be done using the `install2.r` convenience script
+* The server startup entrypoint command is now `CMD ["/init"]`
+
+So Docker.base is
+
+```docker
+FROM rocker/shiny-verse:4.0.5
+RUN install2.r --error --skipinstalled ROCR gbm
+``` 
+
+and Docker is 
+
+```docker
+FROM <aws_account_id>.dkr.ecr.<region>.amazonaws.com/rshiny-base:latest
+COPY apps /srv/shiny-server
+CMD ["/init"]
+```
 
 # Overview
 
