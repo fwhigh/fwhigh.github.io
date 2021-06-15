@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "Will High"
   avatar           : "/assets/images/2021-selfie.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Machine learning data scientist and PhD physicist."
+  bio              : "Machine learning data scientist and PhD physicist. Currently at Discord, previously Netflix, DataKind (volunteer), startups, UChicago/Harvard/Caltech/Berkeley."
   location         : "Los Angeles, CA"
   email            :
   links:
@@ -358,4 +358,3 @@ resume_theme:                   default
 ### BEGIN PUBLICATIONS SETTINGS
 
 ### BEGIN PUBLICATIONS SETTINGS
-
