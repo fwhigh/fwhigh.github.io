@@ -1,19 +1,20 @@
 ---
 title: "Machine Learning Likelihood, Loss, Gradient, and Hessian Cheat Sheet"
-date: 2021-03-21 12:00:00 -0700
+date: 2021-06-18 12:00:00 -0700
+last_modified_at: 2021-06-18 12:01:00 -0700
 comments: true
 author: "Will High"
-categories: 
+categories:
   - Machine Learning
+  - Featured
 excerpt: Cheat sheet for likelihoods, loss functions, gradients, and Hessians.
 toc: true
 toc_sticky: true
 classes: wide
 ---
 
-# tl;dr 
-
-Cheat sheet for likelihoods, loss functions, gradients, and Hessians. 
+Cheat sheet for likelihoods, loss functions, gradients, and Hessians.
+This is a living document that I'll update over time.
 
 # Motivating theory
 
@@ -37,7 +38,7 @@ models are hypotheses
 and data are
 $y_i | \mathbf{x}_i$ label-feature vector tuples.
 
-We're looking for the best model, which maximizes the posterior probability. 
+We're looking for the best model, which maximizes the posterior probability.
 If the prior is flat ($P(H) = 1$) this reduces to likelihood maximization.
 
 If the prior on model parameters is normal you get Ridge regression.
@@ -45,8 +46,8 @@ If the prior on model parameters is Laplace distributed you get LASSO.
 
 ## Gradient descent
 
-Objectives are derived as the negative of the log-likelihood function. 
-Objects with regularization can be thought of as the negative of the log-posterior probability function, 
+Objectives are derived as the negative of the log-likelihood function.
+Objects with regularization can be thought of as the negative of the log-posterior probability function,
 but I'll be ignoring regularizing priors here.
 
 Objective function is derived as the negative of the log-likelihood function,
@@ -59,28 +60,28 @@ $$
 
 ### In linear regression, gradient descent happens in parameter space
 
-For linear models like least-squares and logistic regression, 
+For linear models like least-squares and logistic regression,
 
 $$
 \ell_i = \ell(f(\beta; \mathbf{x}_i))
 $$
 
-where 
+where
 
 $$
 f(\beta; \mathbf{x}_i) = \mathbf{x}_i^T \mathbf{\beta},
 $$
 
-$\beta$ are the coefficients and 
+$\beta$ are the coefficients and
 $$\mathbf{x}_i = 1$$ is the $i$-th feature vector.
-This formulation supports a y-intercept or offset term by defining $x_{i,0} = 1$. 
+This formulation supports a y-intercept or offset term by defining $x_{i,0} = 1$.
 The rest of the entries $x_{i,j}: j>0$ are the model features.
 
 Gradient descent minimazation methods make use of the first partial derivative.
 
 $$\begin{eqnarray}
 \ell^{\prime} & = & \frac{\partial \ell}{\partial \mathbf{\beta}} \\
- & = & \mathbf{x}_i \frac{\partial \ell}{\partial f} 
+ & = & \mathbf{x}_i \frac{\partial \ell}{\partial f}
 \end{eqnarray}$$
 
 Some gradient descent variants,
@@ -89,19 +90,19 @@ use the second partial derivative or *Hessian*.
 
 $$\begin{eqnarray}
 \ell^{\prime\prime} & = & \frac{\partial^2 \ell}{\partial \mathbf{\beta}^2} \\
- & = & \mathbf{x}_i^2 \frac{\partial^2 \ell}{\partial f^2} 
+ & = & \mathbf{x}_i^2 \frac{\partial^2 \ell}{\partial f^2}
 \end{eqnarray}$$
 
 ### In gradient boosting, gradient descent happens in function space
 
-In gradient boosting, 
+In gradient boosting,
 
 $$
 \ell_i = \ell(f(\mathbf{x}_i))
 $$
 
 where optimization is done over the set of different functions $\\{f\\}$ in functional space
-rather than over parameters of a single linear function. 
+rather than over parameters of a single linear function.
 In this case the gradient is taken w.r.t. the function $f$.
 
 $$\begin{eqnarray}
@@ -116,8 +117,8 @@ $$\begin{eqnarray}
 
 All derivatives below will be computed with respect to $f$.
 If you are using them in a gradient boosting context, this is all you need.
-If you are using them in a linear model context, 
-you need to multiply the gradient and Hessian by 
+If you are using them in a linear model context,
+you need to multiply the gradient and Hessian by
 $\mathbf{x}_i$ and $\mathbf{x}_i^2$, respectively.
 
 # Likelihood, loss, gradient, Hessian
@@ -126,7 +127,7 @@ The loss is the negative log-likelihood for a single data point.
 
 ## Square loss
 
-Used in continous variable regression problems. 
+Used in continous variable regression problems.
 
 **Likelihood**
 
@@ -156,35 +157,35 @@ $$\begin{equation}
 
 ## Log loss
 
-Used in binary classifiction problems. 
+Used in binary classifiction problems.
 
 **Likelihood**
 
-Start by asserting binary outcomes are Bernoulli distributed. 
+Start by asserting binary outcomes are Bernoulli distributed.
 
 \begin{equation}
 \prod_{i=1}^N p(\mathbf{x}_i)^{y_i} (1 - p(\mathbf{x}_i))^{1 - {y_i}}
 \end{equation}
 
-The model in this case is a function 
+The model in this case is a function
 with support $h \in \\{-\infty, \infty\\}$ that maps to the Bernoulli
 probability parameter $p$ via the log-odds or "logit" link function.
 
-\begin{equation} 
+\begin{equation}
 f(\mathbf{x}_i) = \log{\frac{p(\mathbf{x}_i)}{1 - p(\mathbf{x}_i)}}
 \end{equation}
 
-This formulation maps the boundless hypotheses 
+This formulation maps the boundless hypotheses
 onto probabilities $p \in \\{0, 1\\}$ by just solving for $p$:
 
-\begin{equation} 
+\begin{equation}
 p(\mathbf{x}_i) = \frac{1}{1 + \exp{(-f(\mathbf{x}_i))}}
 \end{equation}
 
 
 **Loss**
 
-For labels following the binary indicator convention $y \in \\{0, 1\\}$, 
+For labels following the binary indicator convention $y \in \\{0, 1\\}$,
 all of the following are equivalent. The easiest way to prove
 they are equivalent is to plug in $y = 0$ and $y = 1$ and rearrange.
 
@@ -194,7 +195,7 @@ $$\begin{eqnarray}
   & = & - y_i f(\mathbf{x}_i) + \log{(1 + \exp{(f(\mathbf{x}_i))})}
 \end{eqnarray}$$
 
-The first form is useful if you want to use different link functions. 
+The first form is useful if you want to use different link functions.
 
 For labels following the transformed convention $z = 2y-1 \in \\{-1, 1\\}$:
 
@@ -205,13 +206,13 @@ $$\begin{equation}
 **Gradient**
 
 $$\begin{eqnarray}
-\frac{\partial \ell}{\partial f} & = & p(\mathbf{x}_i) - y_i 
+\frac{\partial \ell}{\partial f} & = & p(\mathbf{x}_i) - y_i
 \end{eqnarray}$$
 
 **Hessian**
 
 $$\begin{eqnarray}
-\frac{\partial^2 \ell}{\partial f^2} & = & p(\mathbf{x}_i)(1 - p(\mathbf{x}_i)) 
+\frac{\partial^2 \ell}{\partial f^2} & = & p(\mathbf{x}_i)(1 - p(\mathbf{x}_i))
 \end{eqnarray}$$
 
 
@@ -262,20 +263,20 @@ $$\begin{eqnarray}
 L(f) = \prod_{i:C_i = 1} \frac{\exp{f_i}}{\sum_{j:t_j \geq t_i} \exp{f_j}}
 \end{eqnarray}$$
 
-Using the analogy of subscribers to a business 
+Using the analogy of subscribers to a business
 who may or may not renew from period to period,
 following is the unique terminology of survival analysis.
 * $i$ and $j$ index users.
 * $C_i = 1$ is a cancelation or churn event for user $i$ at time $t_i$
 * $C_i = 0$ is a renewal or survival event for user $i$ at time $t_i$
 * Subscribers $i:C_i = 1$ are users who canceled at time $t_i$.
-* $j:t_j \geq t_i$ are users who have survived up to and including time $t_i$, 
-which is the instant before subscriber $i$ canceled their subscription 
+* $j:t_j \geq t_i$ are users who have survived up to and including time $t_i$,
+which is the instant before subscriber $i$ canceled their subscription
 and churned out of the business. This is called the *risk set*, because
-they are the users at risk of canceling at the time user $i$ canceled. 
+they are the users at risk of canceling at the time user $i$ canceled.
 The risk set includes user $i$.
 
-In clinical studies, users are subjects 
+In clinical studies, users are subjects
 and churn is non-survival, i.e. death.
 
 **Loss**
@@ -284,7 +285,7 @@ $$\begin{eqnarray}
 \ell_i = \delta_i \left[ - f_i + \log{\sum_{j:t_j \geq t_i} \exp{f_j}} \right]
 \end{eqnarray}$$
 
-where $\delta_i$ is the churn/death indicator. 
+where $\delta_i$ is the churn/death indicator.
 
 **Gradient**
 
@@ -308,15 +309,9 @@ $$\begin{eqnarray}
 
 **Hessian**
 
-For linear regression,
+To be written.
 
-$$\begin{eqnarray}
-\frac{\partial^2 \ell_i}{\partial \beta^2} = 
-\end{eqnarray}$$
-
-I haven't found a source for gradient boosting.
-
-**References**
+<!-- **References**
 
 * [Boosting proportional hazards models using smoothing splines, with applications to high-dimensional microarray data](https://academic.oup.com/bioinformatics/article/21/10/2403/206251)
 * [BigSurvSGD: Big Survival Data Analysis via Stochastic Gradient Descent](https://arxiv.org/abs/2003.00116)
@@ -324,9 +319,9 @@ I haven't found a source for gradient boosting.
 * [On the Breslow estimator](https://dlin.web.unc.edu/wp-content/uploads/sites/1568/2013/04/Lin07.pdf)
 * [Component-wise gradient boosting and false discovery control in survival analysis with high-dimensional covariates](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4757968/)
 * [XGBoost CoxPH objective source code](https://github.com/dmlc/xgboost/blob/master/src/objective/regression_obj.cu#L279)
-* 
+* -->
 
-# To be written
+# Backlog
 
 * Cross entropy for multiclass problems
 * Accelerated failure time
@@ -339,9 +334,7 @@ I haven't found a source for gradient boosting.
 
 # Further reading
 
-
 * [R GBM vignette, Section 4 "Available Distributions"](https://cran.r-project.org/web/packages/gbm/vignettes/gbm.pdf)
 * [ML Cheat Sheet, Section "Loss Functions"](https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html)
 * [Supervised Learning cheatsheet](https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-supervised-learning)
 * [Stochastic Gradient Descent Tricks](https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/tricks-2012.pdf)
-
