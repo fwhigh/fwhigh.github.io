@@ -105,13 +105,13 @@ rather than over parameters of a single linear function.
 In this case the gradient is taken w.r.t. the function $f$.
 
 $$\begin{equation}
-\ell^{\prime} & = & \frac{\partial \ell}{\partial f}
+\ell^{\prime} = \frac{\partial \ell}{\partial f}
 \end{equation}$$
 
 and the Hessian is
 
 $$\begin{equation}
-\ell^{\prime\prime} & = & \frac{\partial^2 \ell}{\partial f^2}.
+\ell^{\prime\prime} = \frac{\partial^2 \ell}{\partial f^2}.
 \end{equation}$$
 
 All derivatives below will be computed with respect to $f$.
@@ -208,13 +208,13 @@ $$\begin{equation}
 **Gradient**
 
 $$\begin{equation}
-\frac{\partial \ell}{\partial f} & = & p(\mathbf{x}_i) - y_i
+\frac{\partial \ell}{\partial f} = p(\mathbf{x}_i) - y_i
 \end{equation}$$
 
 **Hessian**
 
 $$\begin{equation}
-\frac{\partial^2 \ell}{\partial f^2} & = & p(\mathbf{x}_i)(1 - p(\mathbf{x}_i))
+\frac{\partial^2 \ell}{\partial f^2} = p(\mathbf{x}_i)(1 - p(\mathbf{x}_i))
 \end{equation}$$
 
 
