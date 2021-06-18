@@ -78,41 +78,41 @@ The rest of the entries $x_{i,j}: j>0$ are the model features.
 
 Gradient descent minimazation methods make use of the first partial derivative.
 
-$$\begin{eqnarray}
-\ell^{\prime} & = & \frac{\partial \ell}{\partial \mathbf{\beta}} \\
- & = & \mathbf{x}_i \frac{\partial \ell}{\partial f}
-\end{eqnarray}$$
+$$\begin{equation}
+\ell^{\prime} = \frac{\partial \ell}{\partial \mathbf{\beta}} 
+  = \mathbf{x}_i \frac{\partial \ell}{\partial f}
+\end{equation}$$
 
 Some gradient descent variants,
 like Newton-Raphson,
 use the second partial derivative or *Hessian*.
 
-$$\begin{eqnarray}
-\ell^{\prime\prime} & = & \frac{\partial^2 \ell}{\partial \mathbf{\beta}^2} \\
- & = & \mathbf{x}_i^2 \frac{\partial^2 \ell}{\partial f^2}
-\end{eqnarray}$$
+$$\begin{equation}
+\ell^{\prime\prime} = \frac{\partial^2 \ell}{\partial \mathbf{\beta}^2}
+  = \mathbf{x}_i^2 \frac{\partial^2 \ell}{\partial f^2}
+\end{equation}$$
 
 ### In gradient boosting, gradient descent happens in function space
 
 In gradient boosting,
 
-$$
+$$\begin{equation}
 \ell_i = \ell(f(\mathbf{x}_i))
-$$
+\end{equation}$$
 
 where optimization is done over the set of different functions $\\{f\\}$ in functional space
 rather than over parameters of a single linear function.
 In this case the gradient is taken w.r.t. the function $f$.
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \ell^{\prime} & = & \frac{\partial \ell}{\partial f}
-\end{eqnarray}$$
+\end{equation}$$
 
 and the Hessian is
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \ell^{\prime\prime} & = & \frac{\partial^2 \ell}{\partial f^2}.
-\end{eqnarray}$$
+\end{equation}$$
 
 All derivatives below will be computed with respect to $f$.
 If you are using them in a gradient boosting context, this is all you need.
@@ -207,15 +207,15 @@ $$\begin{equation}
 
 **Gradient**
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \frac{\partial \ell}{\partial f} & = & p(\mathbf{x}_i) - y_i
-\end{eqnarray}$$
+\end{equation}$$
 
 **Hessian**
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \frac{\partial^2 \ell}{\partial f^2} & = & p(\mathbf{x}_i)(1 - p(\mathbf{x}_i))
-\end{eqnarray}$$
+\end{equation}$$
 
 
 ## Quantile regression
@@ -249,7 +249,7 @@ $$\begin{equation}
 **Hessian**
 
 $$\begin{equation}
-\frac{\partial^2 \ell}{\partial f^2} & = & 0
+\frac{\partial^2 \ell}{\partial f^2} = 0
 \end{equation}$$
 
 ## Mean absolute deviation
