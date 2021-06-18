@@ -10,7 +10,6 @@ categories:
 excerpt: Cheat sheet for likelihoods, loss functions, gradients, and Hessians.
 toc: true
 toc_sticky: true
-classes: wide
 ---
 
 Cheat sheet for likelihoods, loss functions, gradients, and Hessians.
@@ -189,11 +188,14 @@ For labels following the binary indicator convention $y \in \\{0, 1\\}$,
 all of the following are equivalent. The easiest way to prove
 they are equivalent is to plug in $y = 0$ and $y = 1$ and rearrange.
 
-$$\begin{eqnarray}
-\ell & = & -y_i\log{p(\mathbf{x}_i)} - (1 - y_i)\log{(1 - p(\mathbf{x}_i))} \\
-  & = & y_i \log{(1 + \exp{(-f(\mathbf{x}_i))})} + (1 - y_i) \log{(1 + \exp{(f(\mathbf{x}_i))})}  \\
-  & = & - y_i f(\mathbf{x}_i) + \log{(1 + \exp{(f(\mathbf{x}_i))})}
-\end{eqnarray}$$
+$$\begin{equation}
+\begin{split}
+\ell & = -y_i\log{p(\mathbf{x}_i)} - (1 - y_i)\log{(1 - p(\mathbf{x}_i))} \\
+  & = y_i \log{(1 + \exp{(-f(\mathbf{x}_i))})}   \\
+  &  \qquad + (1 - y_i) \log{(1 + \exp{(f(\mathbf{x}_i))})}  \\
+  & = - y_i f(\mathbf{x}_i) + \log{(1 + \exp{(f(\mathbf{x}_i))})}
+\end{split}
+\end{equation}$$
 
 The first form is useful if you want to use different link functions.
 
@@ -226,24 +228,29 @@ I have not yet seen somebody write down a motivating likelihood function for qua
 
 Sometimes called the pinball loss.
 
-$$\begin{eqnarray}
-\ell & = & (y_i - f(\mathbf{x}_i)) ( \tau  - \mathbb{1}_{y_i < f(\mathbf{x}_i)} ) \\
-& = & \sum_{y_i \geq f(\mathbf{x}_i)}\tau (y_i - f(\mathbf{x}_i)) - \sum_{y_i < f(\mathbf{x}_i)}(1 - \tau) (y_i - f(\mathbf{x}_i))
-\end{eqnarray}$$
+$$\begin{equation}
+\begin{split}
+\ell & = (y_i - f(\mathbf{x}_i)) ( \tau  - \mathbb{1}_{y_i < f(\mathbf{x}_i)} ) \\
+& = \sum_{y_i \geq f(\mathbf{x}_i)}\tau (y_i - f(\mathbf{x}_i)) \\
+& \qquad - \sum_{y_i < f(\mathbf{x}_i)}(1 - \tau) (y_i - f(\mathbf{x}_i))
+\end{split}
+\end{equation}$$
 
 
 **Gradient**
 
-$$\begin{eqnarray}
-\frac{\partial \ell}{\partial f} & = & - ( \tau  - \mathbb{1}_{y_i < f(\mathbf{x}_i)} ) \\
-  & = & - \sum_{y_i \geq f(\mathbf{x}_i)}\tau + \sum_{y_i < f(\mathbf{x}_i)}(1 - \tau)
-\end{eqnarray}$$
+$$\begin{equation}
+\begin{split}
+\frac{\partial \ell}{\partial f} & = - ( \tau  - \mathbb{1}_{y_i < f(\mathbf{x}_i)} ) \\
+  & = - \sum_{y_i \geq f(\mathbf{x}_i)}\tau + \sum_{y_i < f(\mathbf{x}_i)}(1 - \tau)
+\end{split}
+\end{equation}$$
 
 **Hessian**
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \frac{\partial^2 \ell}{\partial f^2} & = & 0
-\end{eqnarray}$$
+\end{equation}$$
 
 ## Mean absolute deviation
 
@@ -259,9 +266,9 @@ The partial likelihood is, as you might guess,
 just part of a larger likelihood, but it is sufficient for maximum likelihood
 estimation and therefore regression.
 
-$$\begin{eqnarray}
+$$\begin{equation}
 L(f) = \prod_{i:C_i = 1} \frac{\exp{f_i}}{\sum_{j:t_j \geq t_i} \exp{f_j}}
-\end{eqnarray}$$
+\end{equation}$$
 
 Using the analogy of subscribers to a business
 who may or may not renew from period to period,
@@ -281,9 +288,9 @@ and churn is non-survival, i.e. death.
 
 **Loss**
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \ell_i = \delta_i \left[ - f_i + \log{\sum_{j:t_j \geq t_i} \exp{f_j}} \right]
-\end{eqnarray}$$
+\end{equation}$$
 
 where $\delta_i$ is the churn/death indicator.
 
@@ -296,16 +303,15 @@ followed by $n$ for the progressive total-loss compute ([ref](https://arxiv.org/
 
 For linear regression, the gradient for instance $i$ is
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \frac{\partial \ell_i}{\partial \beta} = \delta_i \left[ - \mathbf{x}_i + \frac{\sum_{j:t_j \geq t_i} \mathbf{x}_j \exp{f(\beta; \mathbf{x}_j)}}{\sum_{j:t_j \geq t_i} \exp{f(\beta; \mathbf{x}_j)}} \right]
-\end{eqnarray}$$
+\end{equation}$$
 
 For gradient boosting, the gradient for instance $i$ is
 
-$$\begin{eqnarray}
+$$\begin{equation}
 \frac{\partial \ell_i}{\partial f} = \delta_i \left[ - 1 + \sum_{j=1}^n \delta_j \mathbb{1}_{t_i \geq t_j} \frac{\exp{(f(\mathbf{x}_i))}}{\sum_{r=1}^n \mathbb{1}_{t_r \geq t_j} \exp{(f(\mathbf{x}_r))}} \right]
-\end{eqnarray}$$
-
+\end{equation}$$
 
 **Hessian**
 
