@@ -6,7 +6,6 @@ comments: true
 author: "Will High"
 categories:
   - Machine Learning
-  - Featured
 excerpt: Cheat sheet for likelihoods, loss functions, gradients, and Hessians.
 toc: true
 toc_sticky: true
@@ -79,7 +78,7 @@ The rest of the entries $x_{i,j}: j>0$ are the model features.
 Gradient descent minimazation methods make use of the first partial derivative.
 
 $$\begin{equation}
-\ell^{\prime} = \frac{\partial \ell}{\partial \mathbf{\beta}} 
+\ell^{\prime} = \frac{\partial \ell}{\partial \mathbf{\beta}}
   = \mathbf{x}_i \frac{\partial \ell}{\partial f}
 \end{equation}$$
 
