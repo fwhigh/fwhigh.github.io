@@ -1,6 +1,7 @@
 ---
 title: "Machine Learning Model Selection with Metaflow"
-date: 2021-08-12 12:00:00 -0700
+date: 2021-05-24 12:00:00 -0700
+last_modified_at: 2021-08-12 12:00:00 -0700
 comments: true
 author: "Will High"
 header:
