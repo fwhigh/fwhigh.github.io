@@ -40,6 +40,7 @@ examples/model-selection/results/1621303262250162
 
 * [AICamp recipe Github gist](https://gist.github.com/fwhigh/c6f9c88cf94cedf2e96d6900ac0f1226#file-aicamp_recipe-sh)
 * [fwhigh/metaflow-helper Github project](https://github.com/fwhigh/metaflow-helper)
+* [AICamp talk on YouTube](https://www.youtube.com/watch?v=kDIBTWDJGgY)
 
 # Overview
 
