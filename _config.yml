@@ -86,9 +86,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : "google-tag" # false (default), "google", "google-universal", "custom"
+  provider               : "google" # false (default), "google", "google-universal", "custom"
   google:
-    measurement_id       : G-3NF6YN9MCV
+    tracking_id          : UA-101187742-1
     anonymize_ip         : # true, false (default)
 
 # Site Author
