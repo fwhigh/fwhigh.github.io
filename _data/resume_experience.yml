@@ -1,6 +1,25 @@
+- company: Tala
+  position: Sr Director, Data Science & Machine Learning Engineering
+  duration: August, 2022 &mdash; Present
+  summary: |
+    Head of Data Science and ML Engineering for Tala.
+    <ul class="resume-item-list">
+      <li>Formalized the causal inference data science function from scratch and grew to three hires</li>
+      <li>Optimized the model development lifecycle from of order months average (12 months worst case) to weeks average (3 months worst case)</li>
+      <li>Python, Snowflake, Kubernetes, Kafka, Metaflow on AWS</li>
+    </ul>
+
 - company: Discord
   position: Staff Data Scientist
-  duration: June, 2021 &mdash; Present
+  duration: June, 2021 &mdash; July 2022
+  summary: |
+    Led the machine learning and causal inference data scientists for growth, safety, and product.
+    <ul class="resume-item-list">
+      <li>Built the causal inference data science function from scratch and made first senior hire</li>
+      <li>Built Discord's first user LTV survival model</li>
+      <li>Scaled taxonomy to of order 100M servers using ML</li>
+      <li>Python, BigQuery on Airflow in Google Cloud</li>
+    </ul>
 
 - company: Netflix
   position: Senior Data Scientist
@@ -8,9 +27,9 @@
   summary: |
     Predicted the value of licensed and original content and supported creative decision-making using machine learning models.
     <ul class="resume-item-list">
-      <li>Stack included Python, R, Bash, Hive and Presto</li>
       <li>Used XGBoost, LightGBM, Vowpal Wabbit, Keras</li>
       <li>Scaled expert-owned content taxonomy to all shows using ML models</li>
+      <li>Python, R, Bash, Hive and Presto on AWS</li>
     </ul>
 
 - company: Joymode
@@ -34,7 +53,6 @@
 - company: ThoughtWorks
   position: Data Scientist
   duration:   February, 2013  &mdash; July, 2013
-  summary: ABCDEF
 
 - company: University of Chicago
   position: Postdoctoral Research Scholar
@@ -42,7 +60,7 @@
   summary: |
     <ul class="resume-item-list">
       <li>Researched gravitational lensing using the Hubble Space Telescope and Magellan Telescopes in Chile</li>
-      <li>Awarded N Hubble orbits and $X in two research proposals</li>
+      <li>Awarded N Hubble orbits and $200k in two research proposals</li>
       <li>Published four papers</li>
       <li>Mentored undergraduate and graduate students in astrophysics research</li>
     </ul>

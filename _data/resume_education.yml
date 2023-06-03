@@ -4,11 +4,19 @@
   year: 2005 &mdash; 2010
   #awards:
   #  - award: Summa Cumme Laude graduate
-  summary: Specialties in astrophysics, cosmology.
+  summary: |
+    <ul class="resume-item-list">
+      <li>Specialties in astrophysics, cosmology</li>
+      <li>Thesis: <a target=_blank href="http://127.0.0.1:4000/publications/#:~:text=page%3A%20.%3B%20173%20p.-,Link,-Grants">The dawn of wide-field Sunyaev-Zel'dovich cluster surveys: Efficient optical follow-up</a></li>
+    </ul>
 
 - degree: BA, Physics
   uni: University of California, Berkeley
   year: 1998 &mdash; 2004
   # awards:
   #   - award: Highest Honors
-  summary: Graduated with highest honors.
+  summary: |
+    <ul class="resume-item-list">
+      <li>Graduated with highest honors</li>
+      <li>Took 1.5 year hiatus</li>
+    </ul>
