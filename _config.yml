@@ -85,6 +85,7 @@ social:
   links: # An array of links to social media profiles
 
 # Analytics
+# NOTE: I emptied the google-gtag.html include and added the GA4 code into the head element in head.html
 analytics:
   provider               : "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
@@ -94,7 +95,7 @@ analytics:
 # Site Author
 author:
   name             : "Will High"
-  avatar           : "/assets/images/2021-selfie.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/waterfall-selfie.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Machine learning data scientist and PhD physicist. Currently at Discord, previously Netflix, DataKind (volunteer), startups, UChicago/Harvard/Caltech/Berkeley."
   location         : "Los Angeles, CA"
   email            :

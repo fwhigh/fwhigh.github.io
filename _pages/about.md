@@ -7,11 +7,13 @@ author_profile: false
 
 
 <figure style="width: 200px;" class="align-right">
-  <img style="border-radius: 50%;" src="{{ site.url }}{{ site.baseurl }}/assets/images/William-High-headshot-white-bg-square.png" alt="">
+  <img style="border-radius: 50%;" src="{{ site.url }}{{ site.baseurl }}/assets/images/waterfall-selfie.png" alt="">
 </figure>
-I'm a machine learning data scientist
-passionate about building new ML-backed systems and applications
+I'm a machine learning and causal inference data scientist
+passionate about building new ML/CI-backed systems and applications
 that delight their users.
+Today I am the head of ML/CI data science and of ML engineering at
+[Tala](https://tala.co/).
 My primary interests are
 [MLOps](https://en.wikipedia.org/wiki/MLOps)
 and scientific [devops](https://en.wikipedia.org/wiki/DevOps) in general.
@@ -22,7 +24,7 @@ and another decade modeling product demand, ad engagement, lifetime value, and
 recommendations
 at [two](https://www.crunchbase.com/organization/joymode) [startups](https://www.crunchbase.com/organization/velos-2),
 [Netflix](https://netflixtechblog.com/),
-and now [Discord](https://discord.com/).
+and [Discord](https://discord.com/).
 I've also occasionally served as a pro bono Data Ambassador for [DataKind](https://www.datakind.org/).
 
 I hold a PhD from Harvard
