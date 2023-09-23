@@ -76,11 +76,12 @@ But it still worked. That ended up being the easiest thing to solder besides the
     1. J6 PULSE pin 3 to GPIO pin 14 GND
     1. J2 SERIAL pin 1 (correctly marked with the black triangle) to GPIO pin 6 GND
     1. J2 SERIAL pin 4 to GPIO pin 8 UART TXD (transmit)
-    1. J2 SERIAL pin 5 to GPIO pin UART RXD (receive)
+    1. J2 SERIAL pin 5 to GPIO pin 10 UART RXD (receive)
 
 <figure>
     <a href="/assets/mightyohm-geiger-rpi4/pinout.png"><img width="70%" src="/assets/mightyohm-geiger-rpi4/pinout.png" /></a>
-    <figcaption width="70%">Pinout photo between Mightohm Geiger counter and Raspberry Pi 4. Rpi4 pin 1 is the bottom left pin on the black ribbon cable.</figcaption>
+    <figcaption width="70%">Pinout photo between Mightohm Geiger counter and Raspberry Pi 4. Rpi4 pin 1 is the bottom left pin on the black ribbon cable. Red to GPIO 1, brown to GPIO 6, orange to GPIO 8, yellow to GPIO 10, and
+    black to GPIO 14.</figcaption>
 </figure>
 
 Credit to [this thread](https://mightyohm.com/forum/viewtopic.php?t=4524)
