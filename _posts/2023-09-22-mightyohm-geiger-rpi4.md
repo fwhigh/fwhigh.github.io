@@ -127,3 +127,27 @@ was great but not quite correct for rpi4.
 Initializing `serial.Serial` to point to `/dev/ttyS0` instead of `/dev/ttyAMA0` works.
 
 {% include gist_embed.html data_gist_id="fwhigh/92a985dd8c494949a36433641c14e2e6" data_gist_file="geiger.py" %}
+
+# That's it
+
+Verify everything by running
+
+```bash
+python geiger.py
+```
+
+in an rpi shell and looking at the output in `geiger.dat`. Mine looks like
+
+```bash
+0 0 8 0.04
+1 1 9 0.05
+2 0 8 0.04
+3 1 9 0.05
+4 0 9 0.05
+5 0 9 0.05
+6 1 10 0.05
+7 0 10 0.05
+8 0 10 0.05
+```
+
+where the columns are `count CPS CPM uSv/hr`.
