@@ -54,10 +54,10 @@ Here's the recipe.
 1. [Mightyohm Geiger counter](https://mightyohm.com/blog/products/geiger-counter/)
 1. Soldering equipment for the Geiger counter
 1. A Raspberry Pi 4
-  1. I love the [Canakit starter kit](https://www.canakit.com/raspberry-pi-4-starter-kit.html) because
+    1. I love the [Canakit starter kit](https://www.canakit.com/raspberry-pi-4-starter-kit.html) because
 it comes with a case, fan, heat sinks, micro SD card, micro SD card reader USB dongle for burning new OS images, power supply, and a power switch
-  1. Don't forget a mouse, keyboard, and optional HDMI monitor (unless you're going headless). Get an RPi 400 to get mouse and keyboard bundled with the rpi4
-  1. I have used and liked Amazon and [Adafruit](https://www.adafruit.com/) for rpi supplies
+    1. Don't forget a mouse, keyboard, and optional HDMI monitor (unless you're going headless). Get an RPi 400 to get mouse and keyboard bundled with the rpi4
+    1. I have used and liked Amazon and [Adafruit](https://www.adafruit.com/) for rpi supplies
 1. Breadboarding jumper wires, especially female to female. I liked [these](https://www.amazon.com/EDGELEC-Breadboard-Optional-Assorted-Multicolored/dp/B07GD2BWPY/).
 
 # Procedure
@@ -72,11 +72,11 @@ But it still worked. That ended up being the easiest thing to solder besides the
 1. Turn off the Raspberry Pi and unplug it.
 1. Turn off the Geiger counter and take out the batteries.
 1. Connect
-  1. J6 PULSE pin 1 (incorrectly marked with the black triangle) to GPIO pin 1 3.3V
-  1. J6 PULSE pin 3 to GPIO pin 14 GND
-  1. J2 SERIAL pin 1 (correctly marked with the black triangle) to GPIO pin 6 GND
-  1. J2 SERIAL pin 4 to GPIO pin 8 UART TXD (transmit)
-  1. J2 SERIAL pin 5 to GPIO pin UART RXD (receive)
+    1. J6 PULSE pin 1 (incorrectly marked with the black triangle) to GPIO pin 1 3.3V
+    1. J6 PULSE pin 3 to GPIO pin 14 GND
+    1. J2 SERIAL pin 1 (correctly marked with the black triangle) to GPIO pin 6 GND
+    1. J2 SERIAL pin 4 to GPIO pin 8 UART TXD (transmit)
+    1. J2 SERIAL pin 5 to GPIO pin UART RXD (receive)
 
 <figure>
     <a href="/assets/mightyohm-geiger-rpi4/pinout.png"><img width="70%" src="/assets/mightyohm-geiger-rpi4/pinout.png" /></a>
