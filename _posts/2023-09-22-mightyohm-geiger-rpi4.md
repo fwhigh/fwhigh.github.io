@@ -1,6 +1,6 @@
 ---
 title: "The Mightyohm Geiger Counter on Raspberry Pi 4"
-date: 2023-09-28 12:00:00 -0700
+date: 2023-09-22 12:00:00 -0700
 comments: true
 author: "Will High"
 header:
