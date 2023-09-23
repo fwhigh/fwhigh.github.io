@@ -101,7 +101,7 @@ I like to connect to my rpi's via VS Code.
 1. Enter password
 1. Command-shift-p then "view: toggle terminal" for a command shell
 1. Create an ssh key on your local computer with `cd ~/.ssh && ssg-keygen`
-1. Copy your public key to your rpi
+1. Copy your public key to your rpi at `~/.ssh/authorized_keys`
 
 With the last 2 steps you don't need to enter a password.
 My typical ssh config entry:
