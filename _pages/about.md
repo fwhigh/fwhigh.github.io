@@ -12,7 +12,7 @@ author_profile: false
 I am the head of data science and ML engineering at
 {% include linkout.html href="https://tala.co/" text="Tala" %}.
 My scope includes predictive ML, causal inference, AB testing, and AI.
-My superpower is speeding up data science.
+My strength is speeding up data science.
 Check out some recent Tala DS/MLE blog posts:
 * {% include linkout.html href="https://tala.co/blog/2024/08/07/ml-engineering/" text="Explore how ML engineering excellence drives innovation at Tala" %}
 * {% include linkout.html href="https://tala.co/blog/2024/04/04/early-read-models-for-shorter-duration-experiments/" text="Learn about early-read models for shorter-duration experiments" %}

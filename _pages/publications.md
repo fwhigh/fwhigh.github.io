@@ -42,6 +42,9 @@ I actively published as an academic from 2007 to 2012.
   {% if pub.link != "" %}
     <p class="bibliography-item-pdf">{% include linkout.html href=pub.link text="Link" %}</p>
   {% endif %}
+  {% if pub.takeaway and pub.takeaway != "" %}
+    <p class="bibliography-item-takeaway" itemprop="title"><em>What this is:</em> {{ pub.takeaway }}</p>
+  {% endif %}
 </div><!-- end of bibliography-item -->
 {% endfor %}
 </section>
@@ -65,6 +68,9 @@ I actively published as an academic from 2007 to 2012.
   {% if pub.download != "" %}
     {% capture pdf_href %}{{ site.url }}{{ site.baseurl }}/assets/publications/{{ pub.download }}{% endcapture %}
     <p class="bibliography-item-pdf">{% include linkout.html href=pdf_href text="PDF" %}</p>
+  {% endif %}
+  {% if pub.takeaway and pub.takeaway != "" %}
+    <p class="bibliography-item-takeaway" itemprop="title"><em>What this is:</em> {{ pub.takeaway }}</p>
   {% endif %}
 </div><!-- end of bibliography-item -->
 {% endfor %}
