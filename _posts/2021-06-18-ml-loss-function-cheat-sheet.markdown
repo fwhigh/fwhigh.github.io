@@ -312,6 +312,41 @@ $$\begin{equation}
 \frac{\partial \ell_i}{\partial f} = \delta_i \left[ - 1 + \sum_{j=1}^n \delta_j \mathbb{1}_{t_i \geq t_j} \frac{\exp{(f(\mathbf{x}_i))}}{\sum_{r=1}^n \mathbb{1}_{t_r \geq t_j} \exp{(f(\mathbf{x}_r))}} \right]
 \end{equation}$$
 
+Gemini deriving the gradient:
+
+The log-partial likelihood is:
+
+$$
+l(\beta) = \sum_{i \in \D} C_i \left[ \beta'x_i - \log\left(\sum_{j \in \R(t_i)} \exp(\beta'x_j)\right) \right]
+$$
+
+The gradient is:
+
+$$
+\nabla l(\beta) = \left[ \frac{\partial l(\beta)}{\partial \beta_1}, \frac{\partial l(\beta)}{\partial \beta_2}, \dots, \frac{\partial l(\beta)}{\partial \beta_p} \right]
+$$
+
+Let's derive the partial derivative with respect to $\beta_k$:
+
+$$
+\frac{\partial l(\beta)}{\partial \beta_k} = \sum_{i \in \D} C_i \left[ x_{ik} - \frac{\sum_{j \in \R(t_i)} x_{jk} \exp(\beta'x_j)}{\sum_{j \in \R(t_i)} \exp(\beta'x_j)} \right]
+$$
+
+where $x_{ik}$ is the $k$-th component of $x_i$.
+
+In vector notation, the gradient is:
+
+$$
+\nabla l(\beta) = \sum_{i \in \D} C_i \left[ x_i - \frac{\sum_{j \in \R(t_i)} x_j \exp(\beta'x_j)}{\sum_{j \in \R(t_i)} \exp(\beta'x_j)} \right]
+$$
+
+
+
+
+
+
+
+
 **Hessian**
 
 To be written.

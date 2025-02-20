@@ -71,7 +71,7 @@ naver_site_verification  :
 
 # Social Sharing
 twitter:
-  username               : "WillHighSci"
+  username               : 
 facebook:
   username               :
   app_id                 :
@@ -96,8 +96,8 @@ analytics:
 author:
   name             : "Will High"
   avatar           : "/assets/images/waterfall-selfie.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Machine learning data scientist and PhD physicist. Currently at Discord, previously Netflix, DataKind (volunteer), startups, UChicago/Harvard/Caltech/Berkeley."
-  location         : "Los Angeles, CA"
+  bio              : "Head of data science and ML engineering at Tala. Previously Discord, Netflix, DataKind (volunteer), startups. PhD physicist at UChicago, Harvard, Caltech, Berkeley."
+  location         : "Portland, OR"
   email            :
   links:
     - label: "Email"
@@ -108,13 +108,13 @@ author:
       # url: "https://www.highonscience.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/WillHighSci"
+      # url: "https://twitter.com/WillHighSci"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/fwhigh"
+      # url: "https://github.com/fwhigh"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -127,13 +127,13 @@ footer:
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/WillHighSci"
+      # url: "https://twitter.com/WillHighSci"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/fwhigh"
+      # url: "https://github.com/fwhigh"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
