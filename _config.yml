@@ -306,7 +306,7 @@ defaults:
 # Resume settings
 resume_avatar:                  "true"
 resume_name:                    "F. William High"
-resume_title:                   "Data Scientist and Leader"
+resume_title:                   "Data Science Leader"
 
 # used for the contact button in _layouts/resume.html
 resume_contact_email:           "fwhigh@gmail.com"
