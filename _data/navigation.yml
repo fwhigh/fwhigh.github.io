@@ -24,6 +24,8 @@ main:
   #   url: /sitemap/
   - title: "Publications"
     url: /publications/
+  - title: "Now"
+    url: /now/
 metaflow-sidebar:
   - title: "Metaflow Series"
     children:
