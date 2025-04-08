@@ -53,3 +53,11 @@ Home automation MQTT broker
 
 Home network speed monitoring
 : [InfluxDB backed Grafana dashboard of speedtest.net calls](https://pimylifeup.com/raspberry-pi-internet-speed-monitor/). I caught a massive degredation of ISP service in 2024 using this.
+
+## Blog
+
+Jekyll Minimal Mistakes
+: https://mmistakes.github.io/minimal-mistakes/
+
+Github Pages hosting
+: https://pages.github.com/
