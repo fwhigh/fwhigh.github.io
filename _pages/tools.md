@@ -14,7 +14,7 @@ Monitor
 : [34 inch Ultragear QHD (3440 x 1440) curved monitor](https://www.amazon.com/dp/B097QF8CP3)
 
 Desktop
-: 2022 Discord issued [NZXT BLD PC](https://www.reddit.com/r/NZXT/comments/npkrp2/nzxt_bld_review/). It's been pretty fun. Great CPU and GPU but I've only used it for building Raspberry Pi Pico W software. I compared these build times to Raspberry Pi 4B build times and it was a minute vs an hour.
+: 2022 Discord issued [NZXT BLD PC](https://www.reddit.com/r/NZXT/comments/npkrp2/nzxt_bld_review/) (discontinued). It's been pretty fun. Great CPU and GPU but I've only used it for building Raspberry Pi Pico W software. I compared C executable build times to Raspberry Pi 4B and it was a minute on the PC vs an hour on the RPi.
 
 Desktop GPU
 : NVIDIA GeForce RTX 3080
@@ -23,7 +23,7 @@ Desktop CPU
 : Intel Core i9 11900KF
 
 Nice little KVM to switch between my MacBook and PC
-: 
+: [GREATHTEK](https://www.amazon.com/dp/B0BWRZPXFY)
 
 Desktop Mount
 : [Eureka Ergonomic under desk mount](https://www.amazon.com/dp/B07MV3GVCK). This thing is cool as hell and it fit perfectly.
@@ -47,7 +47,6 @@ Desktop OS
 
 Home automation hub
 : [Home Assistant](https://www.home-assistant.io/) on Raspberry Pi 4B
-
 
 Home automation MQTT broker
 : FastAPI MQTT server on Raspberry Pi 4B
