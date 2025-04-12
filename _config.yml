@@ -96,7 +96,7 @@ analytics:
 author:
   name             : "Will High"
   avatar           : "/assets/images/waterfall-selfie.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Head of data science and ML engineering at Tala. Previously Discord, Netflix, DataKind (volunteer), startups. PhD physicist at UChicago, Harvard, Caltech, Berkeley."
+  bio              : "VP of ML data science and engineering at Tala. Previously Discord, Netflix, DataKind (volunteer), adtech & ecomm startups. PhD physicist at UChicago, Harvard, Caltech, Berkeley."
   location         : "Portland, OR"
   email            :
   links:
@@ -318,7 +318,7 @@ resume_contact_address:         "742 Evergreen Terrace, Springfield"
 resume_header_contact_info:     "742 Evergreen Terrace, Springfield • 555-7334 • lisasimpson@youremailaddress.com"
 display_header_contact_info:    false
 
-resume_header_intro: "<p>Passionate about machine learning and causal inference model-backed products and leadership done well.</p>"
+resume_header_intro: "<p>Passionate about machine learning and causal inference backed products and leadership done well.</p>"
 
 # use "yes" to display the email contact button,
 # "no" to display an "I'm not looking for work" message,

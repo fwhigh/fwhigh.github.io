@@ -38,20 +38,20 @@ metaflow-sidebar:
       - title: "Coming soon: Model Versioning"
         # url: /blog/2021/05/28/ml-model-versioning-with-metaflow-tags/
 atds-sidebar:
-  - title: "Advanced Topics for Data Scientists"
+  - title: "Advanced Topics for Data Science"
     children:
       - title: "The Command Line"
         url: /blog/2025/02/26/atds-the-command-line/
-      - title: "Coming soon: Algorithmic Complexity"
-        # url: /blog/2021/05/25/metaflow-best-practices-for-ml/
-      - title: "Coming soon: Core Python"
-        # url: /blog/2021/06/02/metaflow-ml-debugging/
-      - title: "Coming soon: Containers"
-        # url: /blog/2021/05/28/ml-model-versioning-with-metaflow-tags/
-      - title: "Coming soon: The Cloud"
-        # url: /blog/2021/05/28/ml-model-versioning-with-metaflow-tags/
-      - title: "Coming soon: Your New, Everyday Workflow"
-        # url: /blog/2021/05/28/ml-model-versioning-with-metaflow-tags/
+      # - title: "Coming soon: Algorithmic Complexity"
+      #   # url: /blog/2021/05/25/metaflow-best-practices-for-ml/
+      # - title: "Coming soon: Core Python"
+      #   # url: /blog/2021/06/02/metaflow-ml-debugging/
+      # - title: "Coming soon: Containers"
+      #   # url: /blog/2021/05/28/ml-model-versioning-with-metaflow-tags/
+      # - title: "Coming soon: The Cloud"
+      #   # url: /blog/2021/05/28/ml-model-versioning-with-metaflow-tags/
+      # - title: "Coming soon: Your New, Everyday Workflow"
+      #   # url: /blog/2021/05/28/ml-model-versioning-with-metaflow-tags/
 blog-sidebar:
   - title: "Blog Entries"
     children:

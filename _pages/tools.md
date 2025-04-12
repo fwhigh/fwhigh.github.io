@@ -57,7 +57,7 @@ Home network speed monitoring
 ## Blog
 
 Jekyll Minimal Mistakes
-: https://mmistakes.github.io/minimal-mistakes/
+: [https://mmistakes.github.io/minimal-mistakes/](https://mmistakes.github.io/minimal-mistakes/)
 
 Github Pages hosting
-: https://pages.github.com/
+: [https://pages.github.com/](https://pages.github.com/)

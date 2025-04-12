@@ -20,5 +20,3 @@ I am
 ... attempting to take on a few hobbies, like home automation with Home Assistant, hobby microcrontroller programming with the Raspberry Pi Pico W and ESP32, reading the quantum field theory books I didn't get the opportunity to take classes for in grad school, and crosswords.
 
 ... grateful for every season and every single day.
-
-{% include gallery layout="third" %}
